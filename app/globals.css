@@ -42,16 +42,16 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* KEIO Brand Colors */
-  --keio-red: #A70107;
-  --keio-red-dark: #7A0105;
-  --keio-red-light: #FEF2F2;
-  --keio-blue: #06065D;
-  --keio-blue-dark: #040440;
-  --keio-blue-light: #E8E8F5;
-  --keio-gold: #D4AF37;
-  --keio-light-bg: #FAFAFA;
-  --keio-dark-text: #0A0A0A;
+  /* YOKOHAMA Brand Colors */
+  --yokohama-red: #A70107;
+  --yokohama-red-dark: #7A0105;
+  --yokohama-red-light: #FEF2F2;
+  --yokohama-blue: #06065D;
+  --yokohama-blue-dark: #040440;
+  --yokohama-blue-light: #E8E8F5;
+  --yokohama-gold: #D4AF37;
+  --yokohama-light-bg: #FAFAFA;
+  --yokohama-dark-text: #0A0A0A;
 }
 
 .dark {
@@ -131,16 +131,16 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* KEIO Brand Colors */
-  --color-keio-red: var(--keio-red);
-  --color-keio-red-dark: var(--keio-red-dark);
-  --color-keio-red-light: var(--keio-red-light);
-  --color-keio-blue: var(--keio-blue);
-  --color-keio-blue-dark: var(--keio-blue-dark);
-  --color-keio-blue-light: var(--keio-blue-light);
-  --color-keio-gold: var(--keio-gold);
-  --color-keio-light-bg: var(--keio-light-bg);
-  --color-keio-dark-text: var(--keio-dark-text);
+  /* YOKOHAMA Brand Colors */
+  --color-yokohama-red: var(--yokohama-red);
+  --color-yokohama-red-dark: var(--yokohama-red-dark);
+  --color-yokohama-red-light: var(--yokohama-red-light);
+  --color-yokohama-blue: var(--yokohama-blue);
+  --color-yokohama-blue-dark: var(--yokohama-blue-dark);
+  --color-yokohama-blue-light: var(--yokohama-blue-light);
+  --color-yokohama-gold: var(--yokohama-gold);
+  --color-yokohama-light-bg: var(--yokohama-light-bg);
+  --color-yokohama-dark-text: var(--yokohama-dark-text);
 }
 
 @layer base {
@@ -197,4 +197,19 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--yokohama-red);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--yokohama-red-dark);
 }

@@ -138,7 +138,7 @@ export default function Services() {
             alt="Cherry blossoms"
             className="w-full h-full object-cover brightness-50"
           />
-          <div className="absolute inset-0 bg-keio-blue/90" />
+          <div className="absolute inset-0 bg-yokohama-blue/90" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div
@@ -167,26 +167,26 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:border-keio-red transition-all"
+                  className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:border-yokohama-red transition-all"
                 >
                   <div className="flex items-start space-x-4 mb-6">
-                    <div className="w-16 h-16 bg-keio-red rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="w-16 h-16 bg-yokohama-red rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold mb-2 text-keio-dark-text">
+                      <h2 className="text-2xl font-bold mb-2 text-yokohama-dark-text">
                         {service.title}
                       </h2>
-                      <p className="text-sm text-keio-red font-bold">{service.pricing}</p>
+                      <p className="text-sm text-yokohama-red font-bold">{service.pricing}</p>
                     </div>
                   </div>
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <div className="mb-6">
-                    <h3 className="font-bold mb-3 text-keio-dark-text">What We Offer:</h3>
+                    <h3 className="font-bold mb-3 text-yokohama-dark-text">What We Offer:</h3>
                     <ul className="space-y-2">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start space-x-2 text-sm text-gray-600">
-                          <div className="w-5 h-5 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="w-5 h-5 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                           <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                         </div>
                           <span>{feature}</span>
@@ -196,7 +196,7 @@ export default function Services() {
                   </div>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center text-keio-blue hover:text-keio-blue-dark font-semibold transition-colors"
+                    className="inline-flex items-center text-yokohama-blue hover:text-yokohama-blue-dark font-semibold transition-colors"
                   >
                     Request This Service <ArrowRight className="ml-2" size={18} />
                   </Link>
@@ -207,10 +207,10 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-light-bg">
+      <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Our Service Process
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -227,10 +227,10 @@ export default function Services() {
                 viewport={{ once: true }}
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="w-12 h-12 bg-keio-red text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                <div className="w-12 h-12 bg-yokohama-red text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
                   {item.step}
                 </div>
-                <h3 className="font-bold mb-2 text-keio-dark-text">{item.title}</h3>
+                <h3 className="font-bold mb-2 text-yokohama-dark-text">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.description}</p>
               </motion.div>
             ))}
@@ -240,56 +240,56 @@ export default function Services() {
 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-keio-red-light to-white rounded-2xl p-12 border-2 border-keio-red-light">
+          <div className="bg-gradient-to-br from-yokohama-red-light to-white rounded-2xl p-12 border-2 border-yokohama-red-light">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
                   Why Choose Our Services?
                 </h2>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <CheckCircle2 className="w-4 h-4 text-white" />
                   </div>
                     <div>
-                      <h3 className="font-bold text-keio-dark-text">Expert Team</h3>
+                      <h3 className="font-bold text-yokohama-dark-text">Expert Team</h3>
                       <p className="text-sm text-gray-600">
                         Native Japanese speakers and certified translators
                       </p>
                     </div>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <CheckCircle2 className="w-4 h-4 text-white" />
                   </div>
                     <div>
-                      <h3 className="font-bold text-keio-dark-text">Proven Track Record</h3>
+                      <h3 className="font-bold text-yokohama-dark-text">Proven Track Record</h3>
                       <p className="text-sm text-gray-600">
                         95% visa success rate and 500+ successful placements
                       </p>
                     </div>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <CheckCircle2 className="w-4 h-4 text-white" />
                   </div>
                     <div>
-                      <h3 className="font-bold text-keio-dark-text">Personalized Approach</h3>
+                      <h3 className="font-bold text-yokohama-dark-text">Personalized Approach</h3>
                       <p className="text-sm text-gray-600">
                         Customized solutions tailored to your specific needs
                       </p>
                     </div>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <CheckCircle2 className="w-4 h-4 text-white" />
                   </div>
                     <div>
-                      <h3 className="font-bold text-keio-dark-text">End-to-End Support</h3>
+                      <h3 className="font-bold text-yokohama-dark-text">End-to-End Support</h3>
                       <p className="text-sm text-gray-600">
                         Comprehensive assistance from start to finish
                       </p>
@@ -314,7 +314,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-red text-white">
+      <section className="py-20 bg-yokohama-red text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -329,7 +329,7 @@ export default function Services() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-keio-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
+              className="inline-block bg-white text-yokohama-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
             >
               Schedule Consultation
             </Link>

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KEIO Educational Consultancy",
+  title: "YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD.",
   description: "Your Gateway to Study & Career Opportunities in Japan",
 };
 

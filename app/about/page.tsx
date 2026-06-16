@@ -5,28 +5,29 @@ import { Target, Eye, Award, Users, Globe, TrendingUp, Heart, BookOpen } from 'l
 import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { TeamSection } from '@/components/TeamSection';
 
 export default function About() {
   const objectives = [
     {
-      title: 'Excellence in Education',
-      description: 'Providing world-class Japanese language education with modern teaching methodologies',
+      title: 'Excellence',
+      description: 'We maintain the highest standards in education consulting and student support services.',
       icon: Award,
     },
     {
-      title: 'Student Success',
-      description: 'Ensuring every student achieves their academic and career goals in Japan',
-      icon: Users,
+      title: 'Trust',
+      description: 'Building lasting relationships through transparent communication and honest guidance.',
+      icon: Heart,
     },
     {
-      title: 'Cultural Bridge',
-      description: 'Building connections between international students and Japanese culture',
-      icon: Globe,
-    },
-    {
-      title: 'Career Development',
-      description: 'Supporting students in finding rewarding career opportunities in Japan',
+      title: 'Success',
+      description: 'Committed to achieving the best outcomes for every student\'s educational journey.',
       icon: TrendingUp,
+    },
+    {
+      title: 'Global Reach',
+      description: 'Connecting Nepal with world-class educational opportunities in Japan.',
+      icon: Globe,
     },
   ];
 
@@ -120,7 +121,7 @@ export default function About() {
             alt="Cherry blossoms"
             className="w-full h-full object-cover brightness-50"
           />
-          <div className="absolute inset-0 bg-keio-blue/90" />
+          <div className="absolute inset-0 bg-yokohama-blue/90" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div
@@ -131,7 +132,7 @@ export default function About() {
           >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">About Us</h1>
             <p className="text-xl text-white/90 max-w-2xl">
-              Empowering dreams through Japanese language education and career guidance since 2019
+              Empowering dreams through Japanese language education and career guidance since 2005
             </p>
           </motion.div>
         </div>
@@ -145,17 +146,20 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-keio-dark-text">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-yokohama-dark-text">
                 Who We Are
               </h2>
               <p className="text-gray-600 mb-4">
-                KEIO Educational Consultancy was founded in 2019 with a simple yet powerful vision: to make Japanese language education and career opportunities accessible to ambitious students worldwide.
+                Yokohama Language & Training Consultancy (P) Ltd. (横浜日本語学習学秋院) is a leading and promising institution providing Japanese language courses along with counselling students for student visa to study in Japan since 20 years+ in Pokhara. It is one of the oldest consultancy of Pokhara.
               </p>
               <p className="text-gray-600 mb-4">
-                We are a team of experienced educators, native Japanese speakers, career counselors, and immigration specialists dedicated to your success. Our comprehensive approach combines language training, cultural education, and practical career support.
+                Talking about the history of Yokohama, initially it was found in 2005 A.D. and registered locally in Pokhara. Later in 2009 A.D. it was registered in Private Limited.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Yokohama Language & Training Consultancy (P) Ltd., is a renowned institution registered under the Act of the Nepal Government, certified by Ministry of Education, Nepal Government having TITI Certified Counselor, specializes in Japanese language education.
               </p>
               <p className="text-gray-600">
-                With a proven track record of 95% visa success rate and 500+ students successfully placed in Japanese universities and companies, we continue to be the trusted choice for those pursuing their Japanese dreams.
+                Beyond facilitating the journey of Nepalese students to study in Japan, we are committed to acquainting them with the essence of Japanese culture. Join us to explore the richness of Japanese culture and language at Yokohama.
               </p>
             </motion.div>
             <motion.div
@@ -165,7 +169,7 @@ export default function About() {
               className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="https://images.unsplash.com/photo-1751704623306-fefadee241a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                src="/about/About1.jpeg"
                 alt="Our classroom"
                 className="w-full h-full object-cover"
               />
@@ -180,7 +184,7 @@ export default function About() {
               className="order-2 lg:order-1 relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="https://images.unsplash.com/photo-1588486691401-93624c48459b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                src="/about/About2.jpeg"
                 alt="Tokyo"
                 className="w-full h-full object-cover"
               />
@@ -192,32 +196,32 @@ export default function About() {
               className="order-1 lg:order-2"
             >
               <div className="flex items-center space-x-3 mb-6">
-                <Target className="w-10 h-10 text-keio-red" />
-                <h2 className="text-3xl lg:text-4xl font-bold text-keio-dark-text">
+                <Target className="w-10 h-10 text-yokohama-red" />
+                <h2 className="text-3xl lg:text-4xl font-bold text-yokohama-dark-text">
                   Our Mission
                 </h2>
               </div>
               <p className="text-gray-600 mb-6">
-                To provide comprehensive, high-quality Japanese language education and career guidance that empowers international students to achieve their academic and professional goals in Japan. We strive to bridge cultures, create opportunities, and transform lives through education.
+                To provide comprehensive, honest and personalized guidance to students from Nepal seeking quality education in Japan. We are committed to simplifying the complex process of international education through expert counseling, visa support, and continuous assistance throughout the student journey to Japan.
               </p>
               <div className="flex items-center space-x-3 mb-6">
-                <Eye className="w-10 h-10 text-keio-red" />
-                <h2 className="text-3xl lg:text-4xl font-bold text-keio-dark-text">
+                <Eye className="w-10 h-10 text-yokohama-red" />
+                <h2 className="text-3xl lg:text-4xl font-bold text-yokohama-dark-text">
                   Our Vision
                 </h2>
               </div>
               <p className="text-gray-600">
-                To be the world's leading Japanese language consultancy, recognized for excellence in education, student success, and creating meaningful connections between international talent and Japanese opportunities.
+                To be the most trusted and preferred educational consultancy in Nepal, recognized for our integrity, excellence and success in transforming students' lives through international education opportunities. We envision a future where every qualified Nepalese student has access to world-class education in Japan.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-keio-light-bg">
+      <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Our Core Objectives
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -236,10 +240,10 @@ export default function About() {
                   viewport={{ once: true }}
                   className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all text-center border border-gray-100"
                 >
-                  <div className="w-16 h-16 bg-keio-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                  <div className="w-16 h-16 bg-yokohama-red rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-bold mb-2 text-keio-dark-text">
+                  <h3 className="font-bold mb-2 text-yokohama-dark-text">
                     {objective.title}
                   </h3>
                   <p className="text-sm text-gray-600">{objective.description}</p>
@@ -253,7 +257,7 @@ export default function About() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Why Study in Japan?
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -268,14 +272,14 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl p-8 border-2 border-keio-blue shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white rounded-xl p-8 border-2 border-yokohama-blue shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-keio-blue rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                  <div className="w-12 h-12 bg-yokohama-blue rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
                     <Heart className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2 text-keio-dark-text">
+                    <h3 className="text-xl font-bold mb-2 text-yokohama-dark-text">
                       {reason.title}
                     </h3>
                     <p className="text-gray-600">{reason.description}</p>
@@ -287,50 +291,12 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-light-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
-              Meet Our Team
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Expert professionals dedicated to your success
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
-              >
-                <div className="h-64 overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="font-bold text-lg mb-1 text-keio-dark-text">
-                    {member.name}
-                  </h3>
-                  <p className="text-keio-red text-sm mb-3">{member.role}</p>
-                  <p className="text-xs text-gray-600">{member.credentials}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TeamSection />
 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Your Success Journey
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -347,11 +313,11 @@ export default function About() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all border-2 border-keio-blue">
-                  <div className="w-12 h-12 bg-keio-red text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all border-2 border-yokohama-blue">
+                  <div className="w-12 h-12 bg-yokohama-red text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
                     {item.step}
                   </div>
-                  <h3 className="font-bold mb-2 text-keio-dark-text">
+                  <h3 className="font-bold mb-2 text-yokohama-dark-text">
                     {item.title}
                   </h3>
                   <p className="text-sm text-gray-600">{item.description}</p>
@@ -362,7 +328,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-red text-white">
+      <section className="py-20 bg-yokohama-red text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -374,11 +340,11 @@ export default function About() {
               Ready to Start Your Journey?
             </h2>
             <p className="text-xl mb-8 text-white max-w-2xl mx-auto">
-              Join hundreds of successful students who have achieved their dreams with KEIO
+              Join hundreds of successful students who have achieved their dreams with YOKOHAMA
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-keio-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
+              className="inline-block bg-white text-yokohama-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
             >
               Get Started Today
             </Link>

@@ -163,7 +163,7 @@ export default function ExamPreparation() {
             alt="Cherry blossoms"
             className="w-full h-full object-cover brightness-50"
           />
-          <div className="absolute inset-0 bg-keio-red/90" />
+          <div className="absolute inset-0 bg-yokohama-red/90" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div
@@ -183,7 +183,7 @@ export default function ExamPreparation() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Japanese Language Certification Exams
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -204,20 +204,20 @@ export default function ExamPreparation() {
                   <div className="lg:col-span-2">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h3 className="text-2xl font-bold mb-1 text-keio-dark-text">
+                        <h3 className="text-2xl font-bold mb-1 text-yokohama-dark-text">
                           {exam.name}
                         </h3>
                         <p className="text-sm text-gray-600">{exam.fullName}</p>
                       </div>
-                      <Award className="w-12 h-12 text-keio-red" />
+                      <Award className="w-12 h-12 text-yokohama-red" />
                     </div>
                     <p className="text-gray-600 mb-4">{exam.description}</p>
                     <div className="mb-4">
-                      <h4 className="font-bold mb-2 text-keio-dark-text">Key Features:</h4>
+                      <h4 className="font-bold mb-2 text-yokohama-dark-text">Key Features:</h4>
                       <ul className="space-y-2">
                         {exam.features.map((feature, i) => (
                           <li key={i} className="flex items-start space-x-2 text-sm text-gray-600">
-                            <div className="w-5 h-5 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div className="w-5 h-5 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                               <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                             </div>
                             <span>{feature}</span>
@@ -226,13 +226,13 @@ export default function ExamPreparation() {
                       </ul>
                     </div>
                   </div>
-                  <div className="bg-keio-light-bg rounded-xl p-6">
-                    <h4 className="font-bold mb-3 text-keio-dark-text">Levels Offered</h4>
+                  <div className="bg-yokohama-light-bg rounded-xl p-6">
+                    <h4 className="font-bold mb-3 text-yokohama-dark-text">Levels Offered</h4>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {exam.levels.map((level, i) => (
                         <span
                           key={i}
-                          className="bg-keio-red-light text-keio-red px-3 py-1 rounded-full text-sm font-medium"
+                          className="bg-yokohama-red-light text-yokohama-red px-3 py-1 rounded-full text-sm font-medium"
                         >
                           {level}
                         </span>
@@ -240,23 +240,23 @@ export default function ExamPreparation() {
                     </div>
                     <div className="space-y-3 text-sm">
                       <div className="flex items-center space-x-2">
-                        <Clock className="w-5 h-5 text-keio-red" />
+                        <Clock className="w-5 h-5 text-yokohama-red" />
                         <div>
-                          <div className="font-medium text-keio-dark-text">Preparation Time</div>
+                          <div className="font-medium text-yokohama-dark-text">Preparation Time</div>
                           <div className="text-gray-600">{exam.preparation}</div>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <TrendingUp className="w-5 h-5 text-keio-red" />
+                        <TrendingUp className="w-5 h-5 text-yokohama-red" />
                         <div>
-                          <div className="font-medium text-keio-dark-text">Our Success Rate</div>
-                          <div className="text-keio-red font-bold">{exam.successRate}</div>
+                          <div className="font-medium text-yokohama-dark-text">Our Success Rate</div>
+                          <div className="text-yokohama-red font-bold">{exam.successRate}</div>
                         </div>
                       </div>
                     </div>
                     <Link
                       href="/contact"
-                      className="mt-6 block text-center bg-keio-blue text-white px-4 py-3 rounded-lg hover:bg-keio-blue-dark transition-all shadow-lg hover:shadow-xl font-semibold"
+                      className="mt-6 block text-center bg-yokohama-blue text-white px-4 py-3 rounded-lg hover:bg-yokohama-blue-dark transition-all shadow-lg hover:shadow-xl font-semibold"
                     >
                       Start Preparation
                     </Link>
@@ -268,10 +268,10 @@ export default function ExamPreparation() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-light-bg">
+      <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Preparation Roadmap
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -288,15 +288,15 @@ export default function ExamPreparation() {
                 viewport={{ once: true }}
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="w-12 h-12 bg-keio-blue text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                <div className="w-12 h-12 bg-yokohama-blue text-white rounded-lg flex items-center justify-center font-bold text-xl mb-4 shadow-md">
                   {index + 1}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-keio-dark-text">{phase.phase}</h3>
-                <p className="text-sm text-keio-blue font-bold mb-3">{phase.duration}</p>
+                <h3 className="text-xl font-bold mb-2 text-yokohama-dark-text">{phase.phase}</h3>
+                <p className="text-sm text-yokohama-blue font-bold mb-3">{phase.duration}</p>
                 <ul className="space-y-2">
                   {phase.activities.map((activity, i) => (
                     <li key={i} className="flex items-start space-x-2 text-sm text-gray-600">
-                      <div className="w-4 h-4 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-4 h-4 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <CheckCircle2 className="w-3 h-3 text-white" />
                       </div>
                       <span>{activity}</span>
@@ -318,8 +318,8 @@ export default function ExamPreparation() {
               viewport={{ once: true }}
             >
               <div className="flex items-center space-x-3 mb-6">
-                <Target className="w-12 h-12 text-keio-red" />
-                <h2 className="text-3xl lg:text-4xl font-bold text-keio-dark-text">
+                <Target className="w-12 h-12 text-yokohama-red" />
+                <h2 className="text-3xl lg:text-4xl font-bold text-yokohama-dark-text">
                   Mock Tests & Practice
                 </h2>
               </div>
@@ -329,7 +329,7 @@ export default function ExamPreparation() {
               <div className="space-y-3">
                 {mockTestBenefits.map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <CheckCircle2 className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-gray-600">{benefit}</span>
@@ -341,14 +341,14 @@ export default function ExamPreparation() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-keio-blue rounded-2xl p-8 text-white shadow-2xl"
+              className="bg-yokohama-blue rounded-2xl p-8 text-white shadow-2xl"
             >
               <BookOpen className="w-16 h-16 mb-6" />
               <h3 className="text-2xl font-bold mb-4">What's Included</h3>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4 text-keio-blue" />
+                    <CheckCircle2 className="w-4 h-4 text-yokohama-blue" />
                   </div>
                   <div>
                     <h4 className="font-bold text-white">Weekly Mock Tests</h4>
@@ -357,7 +357,7 @@ export default function ExamPreparation() {
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4 text-keio-blue" />
+                    <CheckCircle2 className="w-4 h-4 text-yokohama-blue" />
                   </div>
                   <div>
                     <h4 className="font-bold text-white">Detailed Feedback</h4>
@@ -366,7 +366,7 @@ export default function ExamPreparation() {
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4 text-keio-blue" />
+                    <CheckCircle2 className="w-4 h-4 text-yokohama-blue" />
                   </div>
                   <div>
                     <h4 className="font-bold text-white">Practice Materials</h4>
@@ -375,7 +375,7 @@ export default function ExamPreparation() {
                 </li>
                 <li className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-4 h-4 text-keio-blue" />
+                    <CheckCircle2 className="w-4 h-4 text-yokohama-blue" />
                   </div>
                   <div>
                     <h4 className="font-bold text-white">Interview Coaching</h4>
@@ -388,10 +388,10 @@ export default function ExamPreparation() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-light-bg">
+      <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Student Success Stories
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -413,9 +413,9 @@ export default function ExamPreparation() {
                   alt={story.name}
                   className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
                 />
-                <h3 className="font-bold text-lg mb-1 text-keio-dark-text">{story.name}</h3>
-                <div className="text-keio-red font-bold mb-2">{story.exam}</div>
-                <div className="text-2xl font-bold text-keio-dark-text mb-3">{story.score}</div>
+                <h3 className="font-bold text-lg mb-1 text-yokohama-dark-text">{story.name}</h3>
+                <div className="text-yokohama-red font-bold mb-2">{story.exam}</div>
+                <div className="text-2xl font-bold text-yokohama-dark-text mb-3">{story.score}</div>
                 <p className="text-sm text-gray-600">{story.story}</p>
               </motion.div>
             ))}
@@ -423,7 +423,7 @@ export default function ExamPreparation() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-red text-white">
+      <section className="py-20 bg-yokohama-red text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -435,11 +435,11 @@ export default function ExamPreparation() {
               Ready to Ace Your Exam?
             </h2>
             <p className="text-xl mb-8 text-white max-w-2xl mx-auto">
-              Start your exam preparation journey with KEIO's proven methods and expert instructors
+              Start your exam preparation journey with YOKOHAMA's proven methods and expert instructors
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-keio-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
+              className="inline-block bg-white text-yokohama-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
             >
               Enroll in Exam Prep
             </Link>

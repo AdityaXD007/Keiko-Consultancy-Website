@@ -30,7 +30,7 @@ export default function Contact() {
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: ['123 Education Street', 'Shibuya-ku, Tokyo 150-0001', 'Japan'],
+      details: ['Head Office: Pokhara', 'Branch Office: Bagbazar, Kathmandu', 'Nepal'],
     },
     {
       icon: Phone,
@@ -40,7 +40,7 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@keioconsultancy.com', 'admissions@keioconsultancy.com', 'support@keioconsultancy.com'],
+      details: ['info@yokohamaconsultancy.com', 'admissions@yokohamaconsultancy.com', 'support@yokohamaconsultancy.com'],
     },
     {
       icon: Clock,
@@ -60,7 +60,7 @@ export default function Contact() {
             alt="Cherry blossoms"
             className="w-full h-full object-cover brightness-50"
           />
-          <div className="absolute inset-0 bg-keio-blue/90" />
+          <div className="absolute inset-0 bg-yokohama-blue/90" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div
@@ -85,12 +85,12 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold mb-6 text-keio-dark-text">
+              <h2 className="text-3xl font-bold mb-6 text-yokohama-dark-text">
                 Send Us a Message
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block mb-2 text-keio-dark-text">
+                  <label htmlFor="name" className="block mb-2 text-yokohama-dark-text">
                     Full Name *
                   </label>
                   <input
@@ -100,12 +100,12 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-keio-red bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white"
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block mb-2 text-keio-dark-text">
+                  <label htmlFor="email" className="block mb-2 text-yokohama-dark-text">
                     Email Address *
                   </label>
                   <input
@@ -115,12 +115,12 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-keio-red bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white"
                     placeholder="john@example.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block mb-2 text-keio-dark-text">
+                  <label htmlFor="phone" className="block mb-2 text-yokohama-dark-text">
                     Phone Number
                   </label>
                   <input
@@ -129,12 +129,12 @@ export default function Contact() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-keio-red bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white"
                     placeholder="+1 234 567 8900"
                   />
                 </div>
                 <div>
-                  <label htmlFor="service" className="block mb-2 text-keio-dark-text">
+                  <label htmlFor="service" className="block mb-2 text-yokohama-dark-text">
                     Service of Interest
                   </label>
                   <select
@@ -142,7 +142,7 @@ export default function Contact() {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-keio-red bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white"
                   >
                     <option value="">Select a service</option>
                     <option value="basic-japanese">Basic Japanese Course</option>
@@ -156,7 +156,7 @@ export default function Contact() {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="message" className="block mb-2 text-keio-dark-text">
+                  <label htmlFor="message" className="block mb-2 text-yokohama-dark-text">
                     Message *
                   </label>
                   <textarea
@@ -166,13 +166,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-keio-red bg-white resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white resize-none"
                     placeholder="Tell us about your goals and how we can help..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-keio-red text-white px-6 py-4 rounded-lg hover:bg-keio-red-dark transition-all flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl font-semibold"
+                  className="w-full bg-yokohama-red text-white px-6 py-4 rounded-lg hover:bg-yokohama-red-dark transition-all flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl font-semibold"
                 >
                   <span>Send Message</span>
                   <Send size={20} />
@@ -187,7 +187,7 @@ export default function Contact() {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-3xl font-bold mb-6 text-keio-dark-text">
+                <h2 className="text-3xl font-bold mb-6 text-yokohama-dark-text">
                   Get in Touch
                 </h2>
                 <p className="text-gray-600 mb-8">
@@ -204,11 +204,11 @@ export default function Contact() {
                       className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-keio-blue rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                        <div className="w-12 h-12 bg-yokohama-blue rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
                           <Icon className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="font-bold mb-2 text-keio-dark-text">{info.title}</h3>
+                          <h3 className="font-bold mb-2 text-yokohama-dark-text">{info.title}</h3>
                           {info.details.map((detail, i) => (
                             <p key={i} className="text-sm text-gray-600">{detail}</p>
                           ))}
@@ -221,7 +221,7 @@ export default function Contact() {
 
               <div className="bg-white rounded-xl p-6 border-2 border-green-500 shadow-lg">
                 <MessageSquare className="w-12 h-12 text-green-600 mb-4" />
-                <h3 className="font-bold mb-2 text-keio-dark-text">WhatsApp Chat</h3>
+                <h3 className="font-bold mb-2 text-yokohama-dark-text">WhatsApp Chat</h3>
                 <p className="text-sm text-gray-700 mb-4">
                   Connect with us instantly on WhatsApp for quick inquiries
                 </p>
@@ -239,14 +239,14 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-light-bg">
+      <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Visit Our Office
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find us in the heart of Tokyo
+              Find us in Pokhara and Kathmandu
             </p>
           </div>
           <motion.div
@@ -264,33 +264,30 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="KEIO Educational Consultancy Location"
+                title="YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD. Location"
               />
             </div>
             <div className="p-8">
               <div className="grid md:grid-cols-3 gap-8">
                 <div>
-                  <h3 className="font-bold mb-2 text-keio-dark-text">Address</h3>
+                  <h3 className="font-bold mb-2 text-yokohama-dark-text">Head Office</h3>
                   <p className="text-sm text-gray-600">
-                    123 Education Street<br />
-                    Shibuya-ku, Tokyo 150-0001<br />
-                    Japan
+                    Pokhara<br />
+                    Nepal
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2 text-keio-dark-text">Directions</h3>
+                  <h3 className="font-bold mb-2 text-yokohama-dark-text">Branch Office</h3>
                   <p className="text-sm text-gray-600">
-                    5 min walk from Shibuya Station<br />
-                    (JR, Tokyo Metro, Private lines)<br />
-                    Exit A3
+                    Bagbazar<br />
+                    Kathmandu, Nepal
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2 text-keio-dark-text">Parking</h3>
+                  <h3 className="font-bold mb-2 text-yokohama-dark-text">Parking</h3>
                   <p className="text-sm text-gray-600">
-                    Limited parking available<br />
-                    Nearby public parking lots<br />
-                    Public transport recommended
+                    Available at both locations<br />
+                    Please call ahead for assistance
                   </p>
                 </div>
               </div>
@@ -299,7 +296,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-red text-white">
+      <section className="py-20 bg-yokohama-red text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -313,8 +310,8 @@ export default function Contact() {
               Book a free consultation today and take the first step towards your Japanese dreams
             </p>
             <a
-              href="mailto:info@keioconsultancy.com"
-              className="inline-block bg-white text-keio-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
+              href="mailto:info@yokohamaconsultancy.com"
+              className="inline-block bg-white text-yokohama-red px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
             >
               Schedule Free Consultation
             </a>

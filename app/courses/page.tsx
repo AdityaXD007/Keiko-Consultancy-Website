@@ -159,7 +159,7 @@ export default function Courses() {
             alt="Cherry blossoms"
             className="w-full h-full object-cover brightness-50"
           />
-          <div className="absolute inset-0 bg-keio-red/90" />
+          <div className="absolute inset-0 bg-yokohama-red/90" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div
@@ -190,10 +190,10 @@ export default function Courses() {
                   viewport={{ once: true }}
                   className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all border border-gray-100"
                 >
-                  <div className="w-12 h-12 bg-keio-blue rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                  <div className="w-12 h-12 bg-yokohama-blue rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                     <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-bold mb-2 text-keio-dark-text">{feature.title}</h3>
+                  <h3 className="font-bold mb-2 text-yokohama-dark-text">{feature.title}</h3>
                   <p className="text-sm text-gray-600">{feature.description}</p>
                 </motion.div>
               );
@@ -219,32 +219,32 @@ export default function Courses() {
                   </div>
                   <div className="p-8 lg:p-12">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="bg-keio-red text-white px-4 py-1 rounded-full text-sm font-semibold shadow-sm">
+                      <span className="bg-yokohama-red text-white px-4 py-1 rounded-full text-sm font-semibold shadow-sm">
                         {course.level}
                       </span>
-                      <div className="text-3xl font-bold text-keio-red">{course.price}</div>
+                      <div className="text-3xl font-bold text-yokohama-red">{course.price}</div>
                     </div>
-                    <h2 className="text-3xl font-bold mb-4 text-keio-dark-text">
+                    <h2 className="text-3xl font-bold mb-4 text-yokohama-dark-text">
                       {course.title}
                     </h2>
                     <p className="text-gray-600 mb-6">{course.description}</p>
                     <div className="flex items-center space-x-6 mb-6 text-sm text-gray-600">
                       <div className="flex items-center space-x-2">
-                        <Clock className="w-5 h-5 text-keio-red" />
+                        <Clock className="w-5 h-5 text-yokohama-red" />
                         <span>{course.duration}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Users className="w-5 h-5 text-keio-red" />
+                        <Users className="w-5 h-5 text-yokohama-red" />
                         <span>Max 12 students</span>
                       </div>
                     </div>
 
                     <div className="mb-6">
-                      <h3 className="font-bold mb-3 text-keio-dark-text">Learning Outcomes</h3>
+                      <h3 className="font-bold mb-3 text-yokohama-dark-text">Learning Outcomes</h3>
                       <ul className="space-y-2">
                         {course.outcomes.map((outcome, i) => (
                           <li key={i} className="flex items-start space-x-2 text-sm text-gray-600">
-                            <div className="w-5 h-5 bg-keio-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div className="w-5 h-5 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                               <Check className="w-3.5 h-3.5 text-white" />
                             </div>
                             <span>{outcome}</span>
@@ -254,11 +254,11 @@ export default function Courses() {
                     </div>
 
                     <div className="mb-6">
-                      <h3 className="font-bold mb-3 text-keio-dark-text">Curriculum Highlights</h3>
+                      <h3 className="font-bold mb-3 text-yokohama-dark-text">Curriculum Highlights</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {course.curriculum.map((item, i) => (
                           <div key={i} className="flex items-start space-x-2 text-sm text-gray-600">
-                            <div className="w-4 h-4 bg-keio-red rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div className="w-4 h-4 bg-yokohama-red rounded flex items-center justify-center flex-shrink-0 mt-0.5">
                               <BookOpen className="w-3 h-3 text-white" />
                             </div>
                             <span>{item}</span>
@@ -269,7 +269,7 @@ export default function Courses() {
 
                     <Link
                       href="/contact"
-                      className="inline-flex items-center bg-keio-blue text-white px-6 py-3 rounded-lg hover:bg-keio-blue-dark transition-all shadow-lg hover:shadow-xl font-semibold"
+                      className="inline-flex items-center bg-yokohama-blue text-white px-6 py-3 rounded-lg hover:bg-yokohama-blue-dark transition-all shadow-lg hover:shadow-xl font-semibold"
                     >
                       Enroll Now <ArrowRight className="ml-2" size={20} />
                     </Link>
@@ -281,10 +281,10 @@ export default function Courses() {
         </div>
       </section>
 
-      <section className="py-20 bg-keio-light-bg">
+      <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-keio-dark-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
               Enrollment Process
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -301,10 +301,10 @@ export default function Courses() {
                 viewport={{ once: true }}
                 className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="w-16 h-16 bg-keio-red text-white rounded-full flex items-center justify-center font-bold text-2xl mx-auto mb-4 shadow-md">
+                <div className="w-16 h-16 bg-yokohama-red text-white rounded-full flex items-center justify-center font-bold text-2xl mx-auto mb-4 shadow-md">
                   {item.step}
                 </div>
-                <h3 className="font-bold mb-2 text-keio-dark-text">{item.title}</h3>
+                <h3 className="font-bold mb-2 text-yokohama-dark-text">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.description}</p>
               </motion.div>
             ))}
@@ -314,7 +314,7 @@ export default function Courses() {
 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-keio-blue rounded-2xl p-12 text-center text-white shadow-2xl">
+          <div className="bg-yokohama-blue rounded-2xl p-12 text-center text-white shadow-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -329,7 +329,7 @@ export default function Courses() {
               </p>
               <Link
                 href="/contact"
-                className="inline-block bg-white text-keio-blue px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
+                className="inline-block bg-white text-yokohama-blue px-8 py-4 rounded-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl font-semibold"
               >
                 Book Free Consultation
               </Link>
