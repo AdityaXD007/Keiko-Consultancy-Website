@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 import { motion } from 'motion/react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 
+// Force Turbopack recompile
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -15,53 +17,52 @@ export default function Contact() {
     service: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Thank you for your message! We will get back to you within 24 hours.');
-    setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      // Read EmailJS IDs from environment variables
+      // You can get them by creating a free account at https://www.emailjs.com/
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+
+      const templateParams = {
+        name: formData.name,        // Maps to {{name}}
+        email: formData.email,      // Maps to {{email}}
+        title: formData.service || 'General Inquiry', // Maps to {{title}}
+        phone: formData.phone,      // You can add {{phone}} to your Content
+        service: formData.service,  // You can add {{service}} to your Content
+        message: formData.message,  // You can add {{message}} to your Content
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      toast.success('Thank you for your message! We will get back to you within 24 hours.');
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast.error('Failed to send message. Please try again or contact us directly on WhatsApp.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: 'Visit Us',
-      details: ['Head Office: Pokhara', 'Branch Office: Bagbazar, Kathmandu', 'Nepal'],
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      details: ['+81 3-1234-5678', '+81 90-8765-4321', 'Mon-Sat: 9AM - 6PM JST'],
-    },
-    {
-      icon: Mail,
-      title: 'Email Us',
-      details: ['info@yokohamaconsultancy.com', 'admissions@yokohamaconsultancy.com', 'support@yokohamaconsultancy.com'],
-    },
-    {
-      icon: Clock,
-      title: 'Office Hours',
-      details: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 4:00 PM', 'Sunday: Closed'],
-    },
-  ];
+
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
 
       <section className="relative h-[400px] mt-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1712725256207-e15286c6ede3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
-            alt="Cherry blossoms"
-            className="w-full h-full object-cover brightness-50"
-          />
-          <div className="absolute inset-0 bg-yokohama-blue/90" />
-        </div>
+        <div className="absolute inset-0 bg-yokohama-blue/90" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -101,7 +102,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white"
-                    placeholder="John Doe"
+                    placeholder="Your Name"
                   />
                 </div>
                 <div>
@@ -116,7 +117,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white"
-                    placeholder="john@example.com"
+                    placeholder="yourname@example.com"
                   />
                 </div>
                 <div>
@@ -130,7 +131,7 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yokohama-red bg-white"
-                    placeholder="+1 234 567 8900"
+                    placeholder="+977 "
                   />
                 </div>
                 <div>
@@ -172,10 +173,17 @@ export default function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-yokohama-red text-white px-6 py-4 rounded-lg hover:bg-yokohama-red-dark transition-all flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl font-semibold"
+                  disabled={isSubmitting}
+                  className="w-full bg-yokohama-red text-white py-3 px-6 rounded-lg font-semibold hover:bg-yokohama-red-dark transition-all flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
                 >
-                  <span>Send Message</span>
-                  <Send size={20} />
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">Sending...</span>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <Send className="w-5 h-5" />
+                    </>
+                  )}
                 </button>
               </form>
             </motion.div>
@@ -188,35 +196,24 @@ export default function Contact() {
             >
               <div>
                 <h2 className="text-3xl font-bold mb-6 text-yokohama-dark-text">
-                  Get in Touch
+                  Contact Info
                 </h2>
-                <p className="text-gray-600 mb-8">
-                  Have questions about our courses or services? We're here to help! Reach out to us through any of the following channels.
-                </p>
-              </div>
-
-              <div className="grid gap-6">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
-                    >
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-yokohama-blue rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold mb-2 text-yokohama-dark-text">{info.title}</h3>
-                          {info.details.map((detail, i) => (
-                            <p key={i} className="text-sm text-gray-600">{detail}</p>
-                          ))}
-                        </div>
-                      </div>
+                <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                  <div className="space-y-4 text-gray-700">
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="w-5 h-5 text-yokohama-red flex-shrink-0 mt-0.5" />
+                      <p className="text-sm">Mahendapul, Pokhara, Nepal</p>
                     </div>
-                  );
-                })}
+                    <div className="flex items-start space-x-3">
+                      <Phone className="w-5 h-5 text-yokohama-red flex-shrink-0 mt-0.5" />
+                      <p className="text-sm">061-585559</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Mail className="w-5 h-5 text-yokohama-red flex-shrink-0 mt-0.5" />
+                      <p className="text-sm">pkryokohama@gmail.com</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="bg-white rounded-xl p-6 border-2 border-green-500 shadow-lg">
@@ -226,7 +223,7 @@ export default function Contact() {
                   Connect with us instantly on WhatsApp for quick inquiries
                 </p>
                 <a
-                  href="https://wa.me/81312345678"
+                  href="https://wa.me/9779856029972"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-all text-sm font-semibold shadow-md hover:shadow-lg"
@@ -246,7 +243,7 @@ export default function Contact() {
               Visit Our Office
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find us in Pokhara and Kathmandu
+              Find us in Pokhara
             </p>
           </div>
           <motion.div
@@ -256,16 +253,7 @@ export default function Contact() {
             className="bg-white rounded-2xl overflow-hidden shadow-lg"
           >
             <div className="h-[400px] bg-gray-200 relative">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.747389438728!2d139.69952931525867!3d35.659515580199576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca9d8c38f2f%3A0x7e2bb2f2b4e4a1a7!2sShibuya%2C%20Tokyo%2C%20Japan!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD. Location"
-              />
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251.41692494306318!2d83.98904848955186!3d28.22403114923647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39959584e644c301%3A0x4e1e7be2858d2583!2zWW9rb2hhbWEgTGFuZ3VhZ2UgYW5kIFRyYWluaW5nIENvbnN1bHRhbmN5IFBva2hhcmEg5qiq5rWc5pel5pys6Kqe5a2m57-S5a2m6Zmi!5e0!3m2!1sen!2snp!4v1781592643759!5m2!1sen!2snp" width="100%" height="100%" style={{ border: '0' }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div className="p-8">
               <div className="grid md:grid-cols-3 gap-8">

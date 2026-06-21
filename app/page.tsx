@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   GraduationCap,
   FileText,
@@ -16,11 +17,121 @@ import {
   ChevronLeft,
   TrendingUp,
   CheckCircle2,
-  X
+  X,
+  MapPin,
+  Calendar,
+  GraduationCap as GradCap2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { GallerySection } from '@/components/GallerySection';
+
+interface Testimonial {
+  name: string;
+  location: string;
+  year: string;
+  credential: string;
+  image: string;
+  reviewJa: string;
+  reviewEn: string;
+}
+
+function StudentTestimonialCard({ testimonial, index }: { testimonial: Testimonial; index: number }) {
+  const [lang, setLang] = useState<'en' | 'ja'>('en');
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const review = lang === 'ja' ? testimonial.reviewJa : testimonial.reviewEn;
+  const paragraphs = review.split('\n').filter(Boolean);
+  const previewParagraphs = paragraphs.slice(0, 3);
+  const hasMore = paragraphs.length > 3;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.15, duration: 0.6 }}
+      viewport={{ once: true }}
+      className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+    >
+      <div className="flex flex-col lg:flex-row">
+        {/* Left: Photo + Info */}
+        <div className="lg:w-72 flex-shrink-0 bg-gradient-to-br from-yokohama-blue to-yokohama-blue-dark p-6 lg:p-8 flex flex-col items-center justify-center text-center text-white">
+          <div className="relative w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-4 border-white/20 shadow-xl mb-4">
+            <Image
+              src={testimonial.image}
+              alt={testimonial.name}
+              fill
+              className="object-cover"
+              sizes="112px"
+            />
+          </div>
+          <h3 className="font-bold text-lg mb-1">{testimonial.name}</h3>
+          <div className="flex items-center gap-1.5 text-white/70 text-xs mb-1">
+            <MapPin className="w-3 h-3" />
+            <span>{testimonial.location}</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-white/70 text-xs mb-1">
+            <Calendar className="w-3 h-3" />
+            <span>{testimonial.year}</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-white/60 text-xs mt-1">
+            <GradCap2 className="w-3 h-3" />
+            <span className="leading-tight">{testimonial.credential}</span>
+          </div>
+          <div className="flex mt-3">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Testimonial text */}
+        <div className="flex-1 p-6 lg:p-8">
+          {/* Language Toggle */}
+          <div className="flex items-center gap-2 mb-5">
+            <button
+              onClick={() => setLang('en')}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                lang === 'en'
+                  ? 'bg-yokohama-red text-white shadow-sm'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              English
+            </button>
+            <button
+              onClick={() => setLang('ja')}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                lang === 'ja'
+                  ? 'bg-yokohama-red text-white shadow-sm'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              日本語
+            </button>
+          </div>
+
+          {/* Quote */}
+          <div className="text-yokohama-red text-4xl font-serif leading-none mb-2">&ldquo;</div>
+          <div className={`space-y-3 text-gray-600 text-sm leading-relaxed ${!isExpanded && hasMore ? 'line-clamp-none' : ''}`}>
+            {(isExpanded ? paragraphs : previewParagraphs).map((p, i) => (
+              <p key={`${lang}-${i}`}>{p}</p>
+            ))}
+          </div>
+          {hasMore && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="mt-3 text-yokohama-red text-sm font-semibold hover:underline"
+            >
+              {isExpanded ? 'Show Less ↑' : 'Read Full Story →'}
+            </button>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -191,24 +302,25 @@ export default function Home() {
     { name: 'Top-J', description: 'Top-J Japanese Exam' },
   ];
 
+
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      review: 'YOKOHAMA helped me achieve N2 level in just 8 months. The instructors are amazing and the study materials are comprehensive!',
-      rating: 5,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop',
+      name: 'Madan Nepali (マダン・ネパール)',
+      location: 'Takamatsu, Kagawa Prefecture',
+      year: 'April 2014 — Japan',
+      credential: 'Anabuki Gakuen / Anabuki Vocational School Graduate',
+      image: '/Testimonials/Madan Nepali.jpeg',
+      reviewJa: '日本留学を目指す皆様へ\n私は、ネパール・ポカラのチプレドゥンガにある Yokohama Consultancy のサポートを受け、2014年4月に日本へ留学しました。\n渡日前には約1年間、日本語をはじめ、日本のルールやマナー、文化、生活習慣について学びました。この研修のおかげで、日本での生活や学習をスムーズにスタートすることができました。\n来日後は、香川県高松市の穴吹学園に入学し、日本語や日本社会について学びました。その後、2016年に穴吹専門学校ビジネス学科へ進学し、ホテル業界に関する専門知識や接客サービスについて学ぶ機会をいただきました。\n現在はホテル業界で客室管理業務に携わっており、日本での留学経験や学校で学んだ知識を活かしながら日々仕事に取り組んでいます。\n振り返ると、Yokohama Consultancyでの事前研修は、私の日本留学、そしてその後のキャリアの基礎となりました。日本への留学を目指している方や、将来日本で活躍したいと考えている方に、心からおすすめしたい教育機関です。\n正しい指導と強い意志、そして努力があれば、夢や目標は必ず実現できると信じています。\nこれから日本留学を目指す皆様のご成功とご活躍を心よりお祈り申し上げます。',
+      reviewEn: 'To everyone aiming to study in Japan,\nWith the support of Yokohama Consultancy in Chipledhunga, Pokhara, Nepal, I went to Japan to study in April 2014.\nBefore going to Japan, I spent about one year learning Japanese, as well as Japanese rules, manners, culture, and lifestyle. Thanks to this training, I was able to smoothly start my life and studies in Japan.\nAfter arriving in Japan, I enrolled at Anabuki Gakuen in Takamatsu, Kagawa Prefecture, where I studied Japanese and Japanese society. Then, in 2016, I advanced to the Business Department at Anabuki Vocational School, where I had the opportunity to learn specialized knowledge about the hotel industry and hospitality services.\nCurrently, I am involved in room management in the hotel industry, applying the experience from studying in Japan and the knowledge I gained at school in my daily work.\nLooking back, the pre-departure training at Yokohama Consultancy became the foundation of my study abroad experience in Japan and my subsequent career. I wholeheartedly recommend this institution to anyone aiming to study in Japan or wanting to build a future career in Japan.\nI believe that with proper guidance, strong determination, and effort, dreams and goals can always be achieved.\nI sincerely wish success and prosperity to everyone aiming to study in Japan.',
     },
     {
-      name: 'Michael Chen',
-      review: 'Thanks to YOKOHAMA\'s visa guidance, I successfully got my student visa and am now studying in Tokyo. Highly recommended!',
-      rating: 5,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop',
-    },
-    {
-      name: 'Priya Sharma',
-      review: 'The career counseling service was invaluable. I landed a job in Osaka within 3 months of completing my course!',
-      rating: 5,
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
+      name: 'Bimal Gurung (ビマル・グルン)',
+      location: 'Fukuoka, Japan',
+      year: 'April 2018 — Japan',
+      credential: 'Kurume Seminar Language School / Japanese University of Economics Graduate',
+      image: '/Testimonials/Bimal Gurung.jpeg',
+      reviewJa: '日本への旅 🇯🇵\n私は幼い頃から、留学生として海外で学ぶことを夢見ていました。+2課程を修了した後、さらに勉強を続けるために日本へ来ることを決意しました。\n日本へ来る前、私はポカラにある信頼できる教育機関の一つ、横浜日本語学習学院に入学しました。横浜を通して、多くのサポートを受けました。福岡でも有数の日本語学校として久留米ゼミナール日本語学校を紹介していただきました。また、面接対策も丁寧にサポートしていただき、日本人の先生方の指導のおかげで無事に面接に合格することができました。\n2018年4月13日、私は留学生として日本に来ました。\n最初の日本での生活は簡単ではありませんでした。自炊もできず、勉強、仕事、日常生活、そして規則正しい生活を両立することはとても大変でした。しかし、私は諦めず、常に努力を続けました。\n日本での生活を通して、規律の大切さ、時間の価値、そして困難が人を強く成長させることを学びました。その経験が今の私を作ってくれました。\n日本語学校卒業後、日本経済大学に進学しました。2020年に大学生活をスタートしました。大学生活も決して簡単ではありませんでしたが、自分で学費を払いながら家族の支援も続け、一生懸命努力しました。\nそして2024年3月10日、大学を卒業し、その後日本企業から内定をいただきました。現在は正社員として働いています。\n以前の自分と同じような悩みや苦労を抱える留学生を見ると、支えたい、応援したいという気持ちになります。一緒に働き、共に成長できることをとても嬉しく思っています。\n横浜日本語学習学院皆様へ――私の人生の大切な旅路を支え、夢を叶える手助けをしてくださり、本当にありがとうございました。\n心より感謝申し上げます。',
+      reviewEn: 'My Journey to Japan 🇯🇵\nSince I was young, I always dreamed of going abroad as an international student. After finishing my +2, I decided to come to Japan to continue my studies.\nBefore coming to Japan, I joined Yokohama Language and Training Consultancy in Pokhara, one of the most trusted institutions. Through Yokohama, I received a lot of support. They recommended Kurume Seminar Language School, which they said was one of the best language schools in Fukuoka. They also helped me prepare for my interview, and with their support and guidance from Japanese teachers, I successfully passed the interview.\nOn April 13, 2018, I came to Japan as an international student.\nLife in Japan was not easy for me at first. I didn\'t even know how to cook for myself. Managing studies, work, daily life, and following a strict schedule was very difficult. However, I kept doing my best and never gave up.\nDuring my journey in Japan, I also learned the importance of discipline, the value of time, and how struggles can help us grow stronger. Those experiences shaped me into the person I am today.\nAfter graduating from Japanese language school, I applied to the Japanese University of Economics. In 2020, I started university. University life was also challenging, but I worked hard and paid my tuition fees by myself while also supporting my family.\nFinally, on March 10, 2024, I graduated from university and later received a job offer from a Japanese company. Now, I am working as a full-time employee.\nWhen I see international students facing the same struggles I had before, I feel motivated to support and encourage them. It makes me happy to work and grow together with them.\nTo Yokohama Language and Training Consultancy — thank you for being part of my entire journey and for helping make my dream possible.\nThank you from the bottom of my heart.',
     },
   ];
 
@@ -256,7 +368,7 @@ export default function Home() {
         <div className="absolute z-10 inset-0 lg:auto lg:top-1/2 lg:-translate-y-1/2 lg:-left-[550px] lg:w-[1100px] lg:h-[1100px] lg:rounded-full bg-yokohama-red shadow-2xl pointer-events-none"></div>
 
         {/* Content Container */}
-        <div className="relative lg:absolute z-20 w-full h-full lg:inset-y-0 lg:left-0 flex flex-col justify-center px-6 lg:pl-16 lg:pr-8 lg:w-[550px] pointer-events-none">
+        <div className="relative lg:absolute z-20 w-full h-full lg:inset-y-0 lg:left-0 flex flex-col justify-center px-6 lg:pl-24 lg:pr-8 lg:w-[550px] pointer-events-none">
           <div className="w-full pointer-events-auto pt-16 lg:pt-0 text-white">
             {/* Admission Open Pill */}
             <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-3 py-1 mb-4 border border-white/20">
@@ -267,7 +379,7 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 leading-tight text-white"
+              className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 leading-tight text-white"
             >
               Your Journey to<br />Japan Starts Here
             </motion.h1>
@@ -316,13 +428,13 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Top Left 20+ Years Icon */}
-        <div className="hidden lg:flex absolute top-2 left-2 lg:top-4 lg:left-4 z-40 pointer-events-none">
+        {/* 20+ Years Icon on right edge of red circle */}
+        <div className="hidden lg:flex absolute top-2 left-2 lg:top-28 lg:-translate-y-1/2 lg:left-[350px] z-40 pointer-events-none">
           <div className="relative pointer-events-auto">
             <div className="flex flex-col items-center justify-center bg-[#0B1A30] rounded-full border-[3px] border-white shadow-xl w-24 h-24">
               <Award className="w-4 h-4 text-yellow-400" />
               <div className="text-2xl font-black text-white leading-none drop-shadow-md">20+</div>
-              <div className="text-[6px] font-bold text-yellow-400 text-center uppercase tracking-widest leading-tight mt-0.5">Years of<br />Experience</div>
+              <div className="text-[6px] font-bold text-yellow-400 text-center uppercase tracking-widest leading-tight mt-0.5">Years of<br />Excellence</div>
             </div>
             {/* Yellow Star Badge */}
             <div className="absolute top-1.5 -right-0.5 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center shadow-md border-[1.5px] border-white">
@@ -331,38 +443,38 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right Side Advertisement Banner */}
+        {/* Centered Advertisement Modal */}
         <AnimatePresence>
           {isBannerVisible && (
-            <div className="hidden lg:flex absolute right-8 top-1/2 -translate-y-1/2 mt-12 z-40 max-w-[300px]">
-              <motion.div 
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 50, transition: { duration: 0.3 } }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl border-l-4 border-yokohama-red relative overflow-hidden"
+            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden max-w-[400px] w-full"
               >
-                <div className="absolute top-0 right-0 bg-yokohama-red text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg pr-8">ADMISSION OPEN</div>
-                <button 
+                <div className="absolute top-0 left-0 bg-yokohama-red text-white text-xs font-bold px-4 py-1.5 rounded-br-lg">ADMISSION OPEN</div>
+                <button
                   onClick={() => setIsBannerVisible(false)}
-                  className="absolute top-1 right-1 text-white hover:text-gray-200 transition-colors z-50 p-1"
+                  className="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors z-50 p-1 bg-gray-100 hover:bg-gray-200 rounded-full"
                   aria-label="Close banner"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X className="w-5 h-5" />
                 </button>
-                <div className="flex items-center space-x-3 mb-4 mt-2">
-                  <div className="w-12 h-12 bg-yokohama-blue rounded-full flex items-center justify-center shrink-0 shadow-inner">
-                    <GraduationCap className="w-6 h-6 text-white" />
+                <div className="flex flex-col items-center text-center mt-6 mb-6">
+                  <div className="w-16 h-16 bg-yokohama-blue rounded-full flex items-center justify-center mb-4 shadow-inner">
+                    <GraduationCap className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-extrabold text-yokohama-dark-text leading-tight text-lg">April Session 2027</h3>
+                  <h3 className="font-extrabold text-yokohama-dark-text leading-tight text-2xl mb-2">April Session 2027</h3>
+                  <p className="text-base text-gray-700 font-medium leading-relaxed mb-2">
+                    Secure your spot in many of Japan's top language schools and colleges.
+                  </p>
+                  <p className="text-base font-bold text-yokohama-red">
+                    Apply now for Student Visa!
+                  </p>
                 </div>
-                <p className="text-sm text-gray-700 font-medium leading-relaxed mb-1">
-                  Secure your spot in many of Japan's top language schools and colleges.
-                </p>
-                <p className="text-sm font-bold text-yokohama-red">
-                  Apply now for Student Visa!
-                </p>
-                <Link href="/contact" className="mt-5 block text-center bg-yokohama-red text-white py-2.5 rounded-lg text-sm font-bold hover:bg-red-700 transition-colors shadow-md">
+                <Link href="/contact" onClick={() => setIsBannerVisible(false)} className="block text-center bg-yokohama-red text-white py-3.5 rounded-xl text-base font-bold hover:bg-red-700 transition-colors shadow-lg w-full">
                   Start Application
                 </Link>
               </motion.div>
@@ -683,43 +795,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20">
+      <GallerySection />
+
+      <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-yokohama-red/10 text-yokohama-red px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+              <MessageSquare className="w-4 h-4" />
+              Student Voices
+            </div>
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
-              Student Testimonials
+              Hear from Our Successful Students
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Hear what our successful students have to say
+              Real stories from our alumni who achieved their dreams in Japan
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="space-y-10">
             {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 shadow-sm"
-              >
-                <div className="flex items-center space-x-4 mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-bold text-yokohama-dark-text">{testimonial.name}</h3>
-                    <div className="flex space-x-1">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-gray-600">{testimonial.review}</p>
-              </motion.div>
+              <StudentTestimonialCard key={index} testimonial={testimonial} index={index} />
             ))}
           </div>
         </div>

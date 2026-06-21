@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Mail, Phone } from 'lucide-react';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,20 +24,39 @@ export function Navbar() {
     { name: 'About Us', path: '/about' },
     { name: 'Courses', path: '/courses' },
     { name: 'Services', path: '/services' },
-
+    { name: 'Gallery', path: '/gallery' },
     { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
-        }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
+      <div className={`bg-yokohama-blue text-white transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0 py-0 opacity-0' : 'h-auto py-2 opacity-100'} hidden md:block`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm">
+          <div className="flex space-x-6">
+            <div className="flex items-center space-x-2">
+              <Phone size={14} className="text-yokohama-red" />
+              <span>061-585559</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Mail size={14} className="text-yokohama-red" />
+              <span>pkryokohama@gmail.com</span>
+            </div>
+          </div>
+          <div>
+            <span className="text-gray-200 text-xs">Your Gateway to Japanese Language Proficiency</span>
+          </div>
+        </div>
+      </div>
+
+      <nav
+        className={`w-full transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
+          }`}
+      >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className="flex items-center space-x-3">
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 shrink-0">
-              <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} />
+              <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} sizes="(max-width: 768px) 100vw, 200px" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-yokohama-dark-text text-base sm:text-lg">YOKOHAMA LANGUAGE</span>
@@ -101,6 +120,7 @@ export function Navbar() {
           </div>
         </div>
       )}
-    </nav>
+      </nav>
+    </header>
   );
 }

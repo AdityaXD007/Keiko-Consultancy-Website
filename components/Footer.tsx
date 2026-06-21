@@ -11,7 +11,7 @@ export function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full p-1 shadow-md flex-shrink-0">
                 <div className="relative w-full h-full">
-                  <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} />
+                  <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} sizes="(max-width: 768px) 100vw, 200px" />
                 </div>
               </div>
               <div className="flex flex-col">
@@ -95,15 +95,15 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3 text-sm">
                 <MapPin size={18} className="text-yokohama-red mt-0.5 flex-shrink-0" />
-                <span className="text-gray-400">123 Education Street, Tokyo, Japan</span>
+                <span className="text-gray-400">Mahendapul, Pokhara, Nepal </span>
               </li>
               <li className="flex items-center space-x-3 text-sm">
                 <Phone size={18} className="text-yokohama-red flex-shrink-0" />
-                <span className="text-gray-400">+81 3-1234-5678</span>
+                <span className="text-gray-400">061-585559</span>
               </li>
               <li className="flex items-center space-x-3 text-sm">
                 <Mail size={18} className="text-yokohama-red flex-shrink-0" />
-                <span className="text-gray-400">info@yokohamaconsultancy.com</span>
+                <span className="text-gray-400">pkryokohama@gmail.com</span>
               </li>
             </ul>
           </div>
