@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Your Gateway to Study & Career Opportunities in Japan",
 };
 
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,6 +32,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {children}
+        <WhatsAppButton />
         <Toaster position="top-center" richColors />
       </body>
     </html>
