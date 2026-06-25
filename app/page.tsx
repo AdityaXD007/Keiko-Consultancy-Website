@@ -92,21 +92,19 @@ function StudentTestimonialCard({ testimonial, index }: { testimonial: Testimoni
           <div className="flex items-center gap-2 mb-5">
             <button
               onClick={() => setLang('en')}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                lang === 'en'
-                  ? 'bg-yokohama-red text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'en'
+                ? 'bg-yokohama-red text-white shadow-sm'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
             >
               English
             </button>
             <button
               onClick={() => setLang('ja')}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                lang === 'ja'
-                  ? 'bg-yokohama-red text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'ja'
+                ? 'bg-yokohama-red text-white shadow-sm'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
             >
               日本語
             </button>
@@ -347,7 +345,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      <section className="relative h-[600px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group">
+      <section className="relative h-[300px] sm:h-[400px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group">
         {/* Background Image */}
         <div className="absolute inset-y-0 right-0 left-0 lg:left-[400px] z-0 bg-gray-900">
           <AnimatePresence mode="wait">
@@ -365,10 +363,10 @@ export default function Home() {
         </div>
 
         {/* Left Red Semi-Circle Background */}
-        <div className="absolute z-10 inset-0 lg:auto lg:top-1/2 lg:-translate-y-1/2 lg:-left-[550px] lg:w-[1100px] lg:h-[1100px] lg:rounded-full bg-yokohama-red shadow-2xl pointer-events-none"></div>
+        <div className="hidden lg:block absolute z-10 inset-0 lg:auto lg:top-1/2 lg:-translate-y-1/2 lg:-left-[550px] lg:w-[1100px] lg:h-[1100px] lg:rounded-full bg-yokohama-red shadow-2xl pointer-events-none"></div>
 
         {/* Content Container */}
-        <div className="relative lg:absolute z-20 w-full h-full lg:inset-y-0 lg:left-0 flex flex-col justify-center px-6 lg:pl-24 lg:pr-8 lg:w-[550px] pointer-events-none">
+        <div className="hidden lg:flex relative lg:absolute z-20 w-full h-full lg:inset-y-0 lg:left-0 flex-col justify-center px-6 lg:pl-24 lg:pr-8 lg:w-[550px] pointer-events-none">
           <div className="w-full pointer-events-auto pt-16 lg:pt-0 text-white">
             {/* Admission Open Pill */}
             <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-3 py-1 mb-4 border border-white/20">
@@ -429,12 +427,12 @@ export default function Home() {
         </div>
 
         {/* 20+ Years Icon on right edge of red circle */}
-        <div className="hidden lg:flex absolute top-2 left-2 lg:top-28 lg:-translate-y-1/2 lg:left-[350px] z-40 pointer-events-none">
+        <div className="hidden lg:flex absolute top-2 left-2 lg:top-30 lg:-translate-y-1/2 lg:left-[350px] z-40 pointer-events-none">
           <div className="relative pointer-events-auto">
-            <div className="flex flex-col items-center justify-center bg-[#0B1A30] rounded-full border-[3px] border-white shadow-xl w-24 h-24">
+            <div className="flex flex-col items-center justify-center bg-[#0B1A30] rounded-full border-[3px] border-white shadow-xl w-26 h-26">
               <Award className="w-4 h-4 text-yellow-400" />
               <div className="text-2xl font-black text-white leading-none drop-shadow-md">20+</div>
-              <div className="text-[6px] font-bold text-yellow-400 text-center uppercase tracking-widest leading-tight mt-0.5">Years of<br />Excellence</div>
+              <div className="text-[10px] font-bold text-yellow-400 text-center uppercase tracking-wider leading-tight mt-0.5">Years of<br />Excellence</div>
             </div>
             {/* Yellow Star Badge */}
             <div className="absolute top-1.5 -right-0.5 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center shadow-md border-[1.5px] border-white">
@@ -485,7 +483,7 @@ export default function Home() {
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
@@ -495,15 +493,15 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                  className="bg-white rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                 >
-                  <div className="w-12 h-12 bg-yokohama-red rounded-full flex items-center justify-center mx-auto mb-3 shadow-md">
-                    <Icon className="w-6 h-6 text-white" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yokohama-red rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 shadow-md">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-yokohama-red mb-1">
+                  <div className="text-2xl sm:text-3xl font-bold text-yokohama-red mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-yokohama-dark-text font-medium">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-yokohama-dark-text font-medium">{stat.label}</div>
                 </motion.div>
               );
             })}

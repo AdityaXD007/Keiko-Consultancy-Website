@@ -9,9 +9,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full p-1 shadow-md flex-shrink-0">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full p-1 shadow-md flex-shrink-0">
                 <div className="relative w-full h-full">
-                  <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} sizes="(max-width: 768px) 100vw, 200px" />
+                  <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} unoptimized sizes="(max-width: 768px) 100vw, 200px" />
                 </div>
               </div>
               <div className="flex flex-col">
