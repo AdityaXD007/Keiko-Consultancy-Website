@@ -427,10 +427,10 @@ export default function Home() {
         </div>
 
         {/* 20+ Years Icon on right edge of red circle */}
-        <div className="hidden lg:flex absolute top-2 left-2 lg:top-30 lg:-translate-y-1/2 lg:left-[350px] z-40 pointer-events-none">
+        <div className="hidden lg:flex absolute top-2 left-2 lg:top-35 lg:-translate-y-1/2 lg:left-[320px] z-40 pointer-events-none">
           <div className="relative pointer-events-auto">
-            <div className="flex flex-col items-center justify-center bg-[#0B1A30] rounded-full border-[3px] border-white shadow-xl w-26 h-26">
-              <Award className="w-4 h-4 text-yellow-400" />
+            <div className="flex flex-col items-center justify-center bg-[#0B1A30] rounded-full border-[3px] border-white shadow-xl w-30 h-30">
+              <Award className="w-6 h-6 text-yellow-400" />
               <div className="text-2xl font-black text-white leading-none drop-shadow-md">20+</div>
               <div className="text-[10px] font-bold text-yellow-400 text-center uppercase tracking-wider leading-tight mt-0.5">Years of<br />Excellence</div>
             </div>
@@ -521,7 +521,7 @@ export default function Home() {
                 About YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD.
               </h2>
               <p className="text-gray-600 mb-4">
-                Yokohama Language & Training Consultancy (P) Ltd. (横浜日本語学習学秋院) is a leading and promising institution providing Japanese language courses along with counselling students for student visa to study in Japan since 20 years+ in Pokhara. It is one of the oldest consultancy of Pokhara.
+                Yokohama Language & Training Consultancy (P) Ltd. (横浜日本語学習学院) is a leading and promising institution providing Japanese language courses along with counselling students for student visa to study in Japan since 20 years+ in Pokhara. It is one of the oldest consultancy of Pokhara.
               </p>
               <p className="text-gray-600 mb-6">
                 Initially found in 2005 A.D. and registered locally in Pokhara, and later in 2009 A.D. registered as a Private Limited. We are a renowned institution registered under the Act of the Nepal Government, certified by Ministry of Education, Nepal Government having TITI Certified Counselor, specializing in Japanese language education.
@@ -803,7 +803,7 @@ export default function Home() {
               Student Voices
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
-              Hear from Our Successful Students
+              See Feedbacks From Our Successful Students
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Real stories from our alumni who achieved their dreams in Japan

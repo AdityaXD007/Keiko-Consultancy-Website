@@ -20,7 +20,7 @@ export default function Services() {
         'Medical records',
         'Immigration documents',
       ],
-      pricing: 'Starting from $50',
+      pricing: 'Starting from',
     },
     {
       title: 'Documentation Assistance',
@@ -34,7 +34,7 @@ export default function Services() {
         'Document verification',
         'Application form assistance',
       ],
-      pricing: 'Starting from $100',
+      pricing: 'Starting from',
     },
     {
       title: 'Visa Guidance',
@@ -48,7 +48,7 @@ export default function Services() {
         'Document checklist preparation',
         'Embassy interview preparation',
       ],
-      pricing: 'Starting from $200',
+      pricing: 'Starting from',
     },
     {
       title: 'Interview Preparation',
@@ -62,7 +62,7 @@ export default function Services() {
         'Body language coaching',
         'Confidence building sessions',
       ],
-      pricing: 'Starting from $75',
+      pricing: 'Starting from',
     },
     {
       title: 'Career Counseling',
@@ -76,7 +76,7 @@ export default function Services() {
         'Salary negotiation tips',
         'Resume optimization',
       ],
-      pricing: 'Starting from $150',
+      pricing: 'Starting from',
     },
     {
       title: 'Pre-departure Orientation',
@@ -90,7 +90,7 @@ export default function Services() {
         'Transportation tips',
         'Essential Japanese phrases',
       ],
-      pricing: 'Starting from $80',
+      pricing: 'Starting from',
     },
   ];
 
@@ -187,8 +187,8 @@ export default function Services() {
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start space-x-2 text-sm text-gray-600">
                           <div className="w-5 h-5 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                        </div>
+                            <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                          </div>
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -253,8 +253,8 @@ export default function Services() {
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle2 className="w-4 h-4 text-white" />
-                  </div>
+                      <CheckCircle2 className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h3 className="font-bold text-yokohama-dark-text">Expert Team</h3>
                       <p className="text-sm text-gray-600">
@@ -264,8 +264,8 @@ export default function Services() {
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle2 className="w-4 h-4 text-white" />
-                  </div>
+                      <CheckCircle2 className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h3 className="font-bold text-yokohama-dark-text">Proven Track Record</h3>
                       <p className="text-sm text-gray-600">
@@ -275,8 +275,8 @@ export default function Services() {
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle2 className="w-4 h-4 text-white" />
-                  </div>
+                      <CheckCircle2 className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h3 className="font-bold text-yokohama-dark-text">Personalized Approach</h3>
                       <p className="text-sm text-gray-600">
@@ -286,8 +286,8 @@ export default function Services() {
                   </li>
                   <li className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-yokohama-red rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle2 className="w-4 h-4 text-white" />
-                  </div>
+                      <CheckCircle2 className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h3 className="font-bold text-yokohama-dark-text">End-to-End Support</h3>
                       <p className="text-sm text-gray-600">

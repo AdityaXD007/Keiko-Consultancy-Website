@@ -12,7 +12,7 @@ export default function Courses() {
       title: 'Basic Japanese Language Course',
       level: 'Beginner',
       duration: '3 Months',
-      price: '$299',
+      price: '',
       image: 'https://images.unsplash.com/photo-1631599575881-556a8c416881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
       description: 'Perfect for absolute beginners with no prior knowledge of Japanese. Learn hiragana, katakana, basic grammar, and everyday conversation.',
       outcomes: [
@@ -35,7 +35,7 @@ export default function Courses() {
       title: 'Intermediate Japanese Course',
       level: 'Intermediate',
       duration: '4 Months',
-      price: '$399',
+      price: '',
       image: 'https://images.unsplash.com/photo-1751704623306-fefadee241a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
       description: 'Build on your foundation and develop conversational fluency. Equivalent to JLPT N4-N3 level preparation.',
       outcomes: [
@@ -58,7 +58,7 @@ export default function Courses() {
       title: 'Advanced Japanese Course',
       level: 'Advanced',
       duration: '6 Months',
-      price: '$599',
+      price: '',
       image: 'https://images.unsplash.com/photo-1617721928610-4d953b81bba8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
       description: 'Master complex grammar, business Japanese, and achieve near-native proficiency. Prepare for JLPT N2-N1 levels.',
       outcomes: [
@@ -81,7 +81,7 @@ export default function Courses() {
       title: 'JLPT/NAT/JFT Exam Preparation',
       level: 'All Levels',
       duration: '2-6 Months',
-      price: '$349',
+      price: '',
       image: 'https://images.unsplash.com/photo-1631599143468-b7d2d09820b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
       description: 'Intensive preparation for Japanese language certification exams. Choose from JLPT N5 to N1, NAT, or JFT levels.',
       outcomes: [
