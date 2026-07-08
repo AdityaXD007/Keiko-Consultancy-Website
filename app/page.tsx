@@ -360,14 +360,16 @@ export default function Home() {
               className="w-full h-full object-cover lg:object-center opacity-80 lg:opacity-100"
             />
           </AnimatePresence>
+          {/* Mobile dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/50 lg:hidden z-10 pointer-events-none"></div>
         </div>
 
         {/* Left Red Semi-Circle Background */}
         <div className="hidden lg:block absolute z-10 inset-0 lg:auto lg:top-1/2 lg:-translate-y-1/2 lg:-left-[550px] lg:w-[1100px] lg:h-[1100px] lg:rounded-full bg-yokohama-red shadow-2xl pointer-events-none"></div>
 
         {/* Content Container */}
-        <div className="hidden lg:flex relative lg:absolute z-20 w-full h-full lg:inset-y-0 lg:left-0 flex-col justify-center px-6 lg:pl-24 lg:pr-8 lg:w-[550px] pointer-events-none">
-          <div className="w-full pointer-events-auto pt-16 lg:pt-0 text-white">
+        <div className="flex absolute z-20 inset-0 w-full h-full lg:left-0 flex-col justify-center px-6 sm:px-10 lg:pl-24 lg:pr-8 lg:w-[550px] pointer-events-none text-center lg:text-left items-center lg:items-start">
+          <div className="w-full pointer-events-auto pt-0 text-white flex flex-col items-center lg:items-start">
             {/* Admission Open Pill */}
             <div className="inline-flex items-center space-x-2 bg-white/10 rounded-full px-3 py-1 mb-4 border border-white/20">
               <GraduationCap className="w-3.5 h-3.5 text-white" />
@@ -385,16 +387,16 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-lg lg:text-xl mb-8 text-white/90"
+              className="text-base sm:text-lg lg:text-xl mb-6 lg:mb-8 text-white/90 max-w-sm lg:max-w-none"
             >
               Learn Japanese, receive expert guidance, and secure admission to top institutions in Japan.
             </motion.p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link href="/courses" className="bg-white text-yokohama-red px-6 py-3 rounded text-sm lg:text-base font-bold hover:bg-gray-100 transition-colors shadow-lg">
+            <div className="flex flex-wrap gap-3 lg:gap-4 justify-center lg:justify-start">
+              <Link href="/courses" className="bg-white text-yokohama-red px-5 py-2.5 lg:px-6 lg:py-3 rounded text-sm lg:text-base font-bold hover:bg-gray-100 transition-colors shadow-lg">
                 Explore Courses
               </Link>
-              <Link href="/contact" className="border-2 border-white text-white px-6 py-3 rounded text-sm lg:text-base font-bold hover:bg-white/10 transition-colors shadow-lg">
+              <Link href="/contact" className="border-2 border-white text-white px-5 py-2.5 lg:px-6 lg:py-3 rounded text-sm lg:text-base font-bold hover:bg-white/10 transition-colors shadow-lg">
                 Free Consultation
               </Link>
             </div>
