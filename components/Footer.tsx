@@ -87,6 +87,11 @@ export function Footer() {
                   Exam Preparation
                 </Link>
               </li>
+              <li>
+                <Link href="/exam-preparation" className="text-gray-400 hover:text-yokohama-red transition-colors text-sm">
+                  SSW Full Course
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -95,11 +100,13 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3 text-sm">
                 <MapPin size={18} className="text-yokohama-red mt-0.5 flex-shrink-0" />
-                <span className="text-gray-400">Mahendapul, Pokhara, Nepal </span>
+                <span className="text-gray-400">Chipledhunga, Lalchan Plaza 3F, Pokhara, Nepal </span>
               </li>
               <li className="flex items-center space-x-3 text-sm">
                 <Phone size={18} className="text-yokohama-red flex-shrink-0" />
                 <span className="text-gray-400">061-585559</span>
+                <span className="text-gray-400">584887</span>
+                <span className="text-gray-400">9812644017</span>
               </li>
               <li className="flex items-center space-x-3 text-sm">
                 <Mail size={18} className="text-yokohama-red flex-shrink-0" />
