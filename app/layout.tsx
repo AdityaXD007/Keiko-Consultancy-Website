@@ -14,8 +14,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD.",
-  description: "Your Gateway to Study & Career Opportunities in Japan",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yokohama.edu.np'),
+  title: {
+    default: "YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD.",
+    template: "%s | Yokohama Consultancy",
+  },
+  description: "Your Gateway to Study & Career Opportunities in Japan. Expert Japanese language class, student visa guidance, NAT/JLPT exam preparation in Nepal.",
+  keywords: [
+    "Japanese Language Classes Nepal",
+    "Study in Japan Consultancy",
+    "NAT Test Preparation",
+    "JLPT Exam Preparation",
+    "Japan Student Visa Nepal",
+    "Yokohama Consultancy Pokhara",
+  ],
+  authors: [{ name: "Yokohama Language & Training Consultancy" }],
+  openGraph: {
+    title: "YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD.",
+    description: "Your Gateway to Study & Career Opportunities in Japan",
+    url: "https://yokohama.edu.np",
+    siteName: "Yokohama Consultancy",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 import { WhatsAppButton } from "@/components/WhatsAppButton";
