@@ -105,7 +105,7 @@ export function Footer() {
               <li className="flex items-center space-x-3 text-sm">
                 <Phone size={18} className="text-yokohama-red flex-shrink-0" />
                 <span className="text-gray-400">061-585559</span>
-                <span className="text-gray-400">584887</span>
+                <span className="text-gray-400">061-584887</span>
                 <span className="text-gray-400">9812644017</span>
               </li>
               <li className="flex items-center space-x-3 text-sm">

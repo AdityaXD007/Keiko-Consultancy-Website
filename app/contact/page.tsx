@@ -202,11 +202,13 @@ export default function Contact() {
                   <div className="space-y-4 text-gray-700">
                     <div className="flex items-start space-x-3">
                       <MapPin className="w-5 h-5 text-yokohama-red flex-shrink-0 mt-0.5" />
-                      <p className="text-sm">Mahendapul, Pokhara, Nepal</p>
+                      <p className="text-sm">Chipledhunga, Lalchan Plaza 3F, Pokhara, Nepal </p>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Phone className="w-5 h-5 text-yokohama-red flex-shrink-0 mt-0.5" />
                       <p className="text-sm">061-585559</p>
+                      <p className="text-sm">061-584887</p>
+                      <p className="text-sm">9812644017</p>
                     </div>
                     <div className="flex items-start space-x-3">
                       <Mail className="w-5 h-5 text-yokohama-red flex-shrink-0 mt-0.5" />
