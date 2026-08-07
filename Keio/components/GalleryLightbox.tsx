@@ -134,6 +134,7 @@ export function GalleryLightbox({ images, initialIndex, isOpen, onClose }: Galle
               src={images[currentIndex]}
               alt={`Gallery image ${currentIndex + 1}`}
               fill
+              unoptimized={images[currentIndex]?.includes('http')}
               className="object-contain"
               quality={90}
               sizes="90vw"
@@ -160,12 +161,14 @@ export function GalleryLightbox({ images, initialIndex, isOpen, onClose }: Galle
                   src={img}
                   alt={`Thumbnail ${idx + 1}`}
                   fill
+                  unoptimized={img.includes('http')}
                   className="object-cover"
                   sizes="56px"
                 />
               </button>
             ))}
           </div>
+
         </motion.div>
       )}
     </AnimatePresence>

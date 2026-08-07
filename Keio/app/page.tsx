@@ -26,6 +26,9 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { GallerySection } from '@/components/GallerySection';
+import { NewsNoticesSection } from '@/components/NewsNoticesSection';
+import type { PopupAnnouncement } from '@/lib/api/types';
+
 
 interface Testimonial {
   name: string;
@@ -133,12 +136,30 @@ function StudentTestimonialCard({ testimonial, index }: { testimonial: Testimoni
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [popupData, setPopupData] = useState<PopupAnnouncement | null>(null);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
   const heroImages = [
     '/banners/Banner1.jpeg',
     '/banners/Banner2.jpeg',
     '/banners/Banner3.jpeg',
   ];
+
+  useEffect(() => {
+    async function loadPopup() {
+      try {
+        const res = await fetch('/api/popup');
+        const data = await res.json();
+        if (data.popup && data.popup.is_active) {
+          setPopupData(data.popup);
+          setIsBannerVisible(true);
+        }
+      } catch (err) {
+        console.error('Failed to load popup:', err);
+      }
+    }
+    loadPopup();
+  }, []);
+
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
@@ -445,7 +466,7 @@ export default function Home() {
 
         {/* Centered Advertisement Modal */}
         <AnimatePresence>
-          {isBannerVisible && (
+          {isBannerVisible && popupData && (
             <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -454,7 +475,11 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.4 }}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden max-w-[400px] w-full"
               >
-                <div className="absolute top-0 left-0 bg-yokohama-red text-white text-xs font-bold px-4 py-1.5 rounded-br-lg">ADMISSION OPEN</div>
+                {popupData.badge_text && (
+                  <div className="absolute top-0 left-0 bg-yokohama-red text-white text-xs font-bold px-4 py-1.5 rounded-br-lg">
+                    {popupData.badge_text}
+                  </div>
+                )}
                 <button
                   onClick={() => setIsBannerVisible(false)}
                   className="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors z-50 p-1 bg-gray-100 hover:bg-gray-200 rounded-full"
@@ -463,25 +488,47 @@ export default function Home() {
                   <X className="w-5 h-5" />
                 </button>
                 <div className="flex flex-col items-center text-center mt-6 mb-6">
-                  <div className="w-16 h-16 bg-yokohama-blue rounded-full flex items-center justify-center mb-4 shadow-inner">
-                    <GraduationCap className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-extrabold text-yokohama-dark-text leading-tight text-2xl mb-2">April Session 2027</h3>
-                  <p className="text-base text-gray-700 font-medium leading-relaxed mb-2">
-                    Secure your spot in many of Japan's top language schools and colleges.
-                  </p>
-                  <p className="text-base font-bold text-yokohama-red">
-                    Apply now for Student Visa!
-                  </p>
+                  {popupData.image ? (
+                    <div className="relative w-full h-44 mb-4 rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                      <img
+                        src={popupData.image.startsWith('http') ? popupData.image : `http://127.0.0.1:8000${popupData.image}`}
+                        alt={popupData.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 bg-yokohama-blue rounded-full flex items-center justify-center mb-4 shadow-inner">
+                      <GraduationCap className="w-8 h-8 text-white" />
+                    </div>
+                  )}
+                  <h3 className="font-extrabold text-yokohama-dark-text leading-tight text-2xl mb-2">
+                    {popupData.title}
+                  </h3>
+
+                  {popupData.description && (
+                    <p className="text-base text-gray-700 font-medium leading-relaxed mb-2">
+                      {popupData.description}
+                    </p>
+                  )}
+                  {popupData.highlight_text && (
+                    <p className="text-base font-bold text-yokohama-red">
+                      {popupData.highlight_text}
+                    </p>
+                  )}
                 </div>
-                <Link href="/contact" onClick={() => setIsBannerVisible(false)} className="block text-center bg-yokohama-red text-white py-3.5 rounded-xl text-base font-bold hover:bg-red-700 transition-colors shadow-lg w-full">
-                  Start Application
+                <Link
+                  href={popupData.button_link || '/contact'}
+                  onClick={() => setIsBannerVisible(false)}
+                  className="block text-center bg-yokohama-red text-white py-3.5 rounded-xl text-base font-bold hover:bg-red-700 transition-colors shadow-lg w-full"
+                >
+                  {popupData.button_text || 'Start Application'}
                 </Link>
               </motion.div>
             </div>
           )}
         </AnimatePresence>
       </section>
+
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -796,6 +843,8 @@ export default function Home() {
       </section>
 
       <GallerySection />
+
+      <NewsNoticesSection />
 
       <section className="py-20 bg-yokohama-light-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

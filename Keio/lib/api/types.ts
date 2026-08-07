@@ -17,13 +17,54 @@ export interface Post {
   slug: string;
   /** HTML string, pre-sanitized via bleach on the backend — safe to render directly with dangerouslySetInnerHTML. */
   content: string;
+  image?: string | null;
   type: PostType;
-  is_featured: boolean;
+  is_featured?: boolean;
   /** ISO-8601 datetime string. */
   created_at: string;
   /** ISO-8601 datetime string. */
   updated_at: string;
 }
+
+/** Shape returned by PopupAnnouncementSerializer. */
+export interface PopupAnnouncement {
+  id: number;
+  badge_text: string;
+  title: string;
+  description: string;
+  highlight_text: string;
+  button_text: string;
+  button_link: string;
+  image?: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GalleryPhoto {
+  id: number;
+  image: string;
+  caption?: string;
+  order: number;
+  created_at: string;
+}
+
+export interface GalleryAlbum {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  cover_image?: string | null;
+  cover_image_url?: string | null;
+  photo_count: number;
+  photos: GalleryPhoto[];
+  is_published: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+
+
 
 /**
  * Generic wrapper matching DRF's PageNumberPagination response envelope.
@@ -44,8 +85,6 @@ export interface PaginatedResponse<T> {
 export interface PostListParams {
   /** Filter by post type. Backend validates against TYPE_CHOICES; invalid values return 400. */
   type?: PostType;
-  /** Filter by featured flag. Backend accepts 'true'/'false'/'1'/'0'; invalid values return 400. */
-  featured?: boolean;
   /** 1-indexed page number for DRF pagination. */
   page?: number;
 }

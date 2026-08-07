@@ -25,6 +25,7 @@ export function Navbar() {
     { name: 'Courses', path: '/courses' },
     { name: 'Services', path: '/services' },
     { name: 'Gallery', path: '/gallery' },
+    { name: 'News & Notice', path: '/news' },
   ];
 
   return (

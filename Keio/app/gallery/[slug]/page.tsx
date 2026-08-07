@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, use } from 'react';
+import { useState, use, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
@@ -8,14 +8,54 @@ import { ChevronRight, Camera, ArrowLeft } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { GalleryLightbox } from '@/components/GalleryLightbox';
-import { getCategoryBySlug } from '@/lib/galleryData';
+import { getCategoryBySlug, GalleryCategory } from '@/lib/galleryData';
 
 export default function GalleryCategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
-  const category = getCategoryBySlug(slug);
+  const staticCategory = getCategoryBySlug(slug);
+  const [category, setCategory] = useState<GalleryCategory | undefined>(staticCategory);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    async function loadAlbum() {
+      try {
+        const res = await fetch('/api/gallery');
+        const data = await res.json();
+        if (data.albums && data.albums.length > 0) {
+          const found = data.albums.find((a: any) => a.slug === slug);
+          if (found) {
+            const staticItem = getCategoryBySlug(slug);
+            const photosList = found.photos && found.photos.length > 0
+              ? found.photos.map((p: any) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
+              : (staticItem ? staticItem.images : []);
+
+            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.jpeg';
+            if (found.cover_image_url || found.cover_image) {
+              const rawCover = found.cover_image_url || found.cover_image;
+              cover = rawCover.startsWith('http') ? rawCover : `http://127.0.0.1:8000${rawCover}`;
+            } else if (photosList.length > 0) {
+              cover = photosList[0];
+            }
+
+            setCategory({
+              id: String(found.id),
+              slug: found.slug,
+              title: found.title,
+              description: found.description,
+              coverImage: cover,
+              images: photosList,
+            });
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load dynamic album:', err);
+      }
+    }
+    loadAlbum();
+  }, [slug]);
+
 
   const handleImageLoad = (index: number) => {
     setLoadedImages((prev) => new Set(prev).add(index));
@@ -61,6 +101,7 @@ export default function GalleryCategoryPage({ params }: { params: Promise<{ slug
             alt={category.title}
             fill
             priority
+            unoptimized={category.coverImage.includes('http')}
             className="object-cover brightness-40"
             sizes="100vw"
           />
@@ -122,24 +163,16 @@ export default function GalleryCategoryPage({ params }: { params: Promise<{ slug
                 className="relative aspect-square rounded-xl overflow-hidden cursor-pointer group bg-gray-100"
                 onClick={() => openLightbox(idx)}
               >
-                {/* Skeleton loader */}
-                {!loadedImages.has(idx) && (
-                  <div className="absolute inset-0 bg-gray-100 animate-pulse rounded-xl">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Camera className="w-8 h-8 text-gray-200" />
-                    </div>
-                  </div>
-                )}
-
                 <Image
                   src={imgSrc}
                   alt={`${category.title} - Photo ${idx + 1}`}
                   fill
+                  unoptimized={imgSrc.includes('http')}
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   loading="lazy"
-                  onLoad={() => handleImageLoad(idx)}
                 />
+
 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">

@@ -1,14 +1,59 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Camera, ArrowRight } from 'lucide-react';
-import { galleryCategories } from '@/lib/galleryData';
+import { galleryCategories, GalleryCategory } from '@/lib/galleryData';
 
 export function GallerySection() {
+  const [categories, setCategories] = useState<GalleryCategory[]>(galleryCategories);
+
+  useEffect(() => {
+    async function loadAlbums() {
+      try {
+        const res = await fetch('/api/gallery');
+        const data = await res.json();
+        if (data.albums && data.albums.length > 0) {
+          const mapped: GalleryCategory[] = data.albums.map((item: any) => {
+            const staticItem = galleryCategories.find((c) => c.slug === item.slug);
+            const photosList = item.photos && item.photos.length > 0
+              ? item.photos.map((p: any) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
+              : (staticItem ? staticItem.images : []);
+
+            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.jpeg';
+            if (item.cover_image_url || item.cover_image) {
+              const rawCover = item.cover_image_url || item.cover_image;
+              cover = rawCover.startsWith('http') ? rawCover : `http://127.0.0.1:8000${rawCover}`;
+            } else if (photosList.length > 0) {
+              cover = photosList[0];
+            }
+
+            return {
+              id: String(item.id),
+              slug: item.slug,
+              title: item.title,
+              description: item.description,
+              coverImage: cover,
+              images: photosList,
+            };
+          });
+          const backendSlugs = new Set(mapped.map((m) => m.slug));
+          const missingStatic = galleryCategories.filter((cat) => !backendSlugs.has(cat.slug));
+          setCategories([...mapped, ...missingStatic]);
+        }
+      } catch (err) {
+        console.error('Failed to load dynamic gallery section albums:', err);
+      }
+
+    }
+    loadAlbums();
+  }, []);
+
   // Show only the first 4 categories on the homepage
-  const featured = galleryCategories.slice(0, 4);
+  const featured = categories.slice(0, 4);
+
 
   return (
     <section className="py-20 bg-yokohama-light-bg">
@@ -40,9 +85,11 @@ export function GallerySection() {
                     src={category.coverImage}
                     alt={category.title}
                     fill
+                    unoptimized={category.coverImage.includes('http')}
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
+
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5">
                     <Camera className="w-3 h-3" />

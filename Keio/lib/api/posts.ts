@@ -110,10 +110,6 @@ export async function fetchPosts(
   if (params.type !== undefined) {
     searchParams.set('type', params.type);
   }
-  if (params.featured !== undefined) {
-    // Backend accepts string booleans ('true'/'false').
-    searchParams.set('featured', String(params.featured));
-  }
   if (params.page !== undefined) {
     searchParams.set('page', String(params.page));
   }
@@ -125,19 +121,6 @@ export async function fetchPosts(
     revalidate: 60,
     tags: ['posts'],
   });
-}
-
-/**
- * Convenience wrapper that returns only featured published posts (results
- * array, not the pagination envelope).
- *
- * Typical use: fetching "Admission Open" banner posts for the homepage
- * hero section. The frontend can render results[0] as a single banner or
- * iterate over all results for a carousel if multiple are featured.
- */
-export async function fetchFeaturedPosts(): Promise<Post[]> {
-  const response = await fetchPosts({ featured: true });
-  return response.results;
 }
 
 /**

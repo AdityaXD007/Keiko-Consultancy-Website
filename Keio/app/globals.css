@@ -213,3 +213,70 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--yokohama-red-dark);
 }
+
+/* Prose Typography for HTML Post Content */
+.prose-post p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+.prose-post h1,
+.prose-post h2,
+.prose-post h3,
+.prose-post h4,
+.prose-post h5,
+.prose-post h6 {
+  font-weight: 700;
+  color: var(--yokohama-dark-text);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+.prose-post h1 { font-size: 2rem; }
+.prose-post h2 { font-size: 1.65rem; border-bottom: 2px solid var(--yokohama-red-light); padding-bottom: 0.5rem; }
+.prose-post h3 { font-size: 1.35rem; }
+.prose-post h4 { font-size: 1.15rem; }
+.prose-post ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose-post ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose-post li {
+  margin-bottom: 0.5rem;
+}
+.prose-post a {
+  color: var(--yokohama-red);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.prose-post a:hover {
+  color: var(--yokohama-red-dark);
+}
+.prose-post blockquote {
+  border-left: 4px solid var(--yokohama-red);
+  background-color: var(--yokohama-red-light);
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+.prose-post code {
+  background-color: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: monospace;
+}
+.prose-post pre {
+  background-color: #1f2937;
+  color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+

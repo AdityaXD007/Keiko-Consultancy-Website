@@ -1,28 +1,72 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Search, Camera, Images } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { galleryCategories } from '@/lib/galleryData';
+import { galleryCategories, GalleryCategory } from '@/lib/galleryData';
 
 export default function GalleryPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [categories, setCategories] = useState<GalleryCategory[]>(galleryCategories);
+
+  useEffect(() => {
+    async function loadAlbums() {
+      try {
+        const res = await fetch('/api/gallery');
+        const data = await res.json();
+        if (data.albums && data.albums.length > 0) {
+          const mapped: GalleryCategory[] = data.albums.map((item: any) => {
+            const staticItem = galleryCategories.find((c) => c.slug === item.slug);
+            const photosList = item.photos && item.photos.length > 0
+              ? item.photos.map((p: any) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
+              : (staticItem ? staticItem.images : []);
+
+            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.jpeg';
+            if (item.cover_image_url || item.cover_image) {
+              const rawCover = item.cover_image_url || item.cover_image;
+              cover = rawCover.startsWith('http') ? rawCover : `http://127.0.0.1:8000${rawCover}`;
+            } else if (photosList.length > 0) {
+              cover = photosList[0];
+            }
+
+            return {
+              id: String(item.id),
+              slug: item.slug,
+              title: item.title,
+              description: item.description,
+              coverImage: cover,
+              images: photosList,
+            };
+          });
+          const backendSlugs = new Set(mapped.map((m) => m.slug));
+          const missingStatic = galleryCategories.filter((cat) => !backendSlugs.has(cat.slug));
+          setCategories([...mapped, ...missingStatic]);
+        }
+      } catch (err) {
+        console.error('Failed to load dynamic gallery albums:', err);
+      }
+
+
+    }
+    loadAlbums();
+  }, []);
 
   const filteredCategories = useMemo(() => {
-    if (!searchQuery.trim()) return galleryCategories;
+    if (!searchQuery.trim()) return categories;
     const q = searchQuery.toLowerCase();
-    return galleryCategories.filter(
+    return categories.filter(
       (cat) =>
         cat.title.toLowerCase().includes(q) ||
         cat.description.toLowerCase().includes(q)
     );
-  }, [searchQuery]);
+  }, [searchQuery, categories]);
 
-  const totalPhotos = galleryCategories.reduce((sum, cat) => sum + cat.images.length, 0);
+  const totalPhotos = categories.reduce((sum, cat) => sum + (cat.images ? cat.images.length : 0), 0);
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -61,7 +105,8 @@ export default function GalleryPage() {
             <div className="flex gap-6 text-white/70 text-sm">
               <div className="flex items-center gap-2">
                 <Images className="w-4 h-4" />
-                <span>{galleryCategories.length} Albums</span>
+                <span>{categories.length} Albums</span>
+
               </div>
               <div className="flex items-center gap-2">
                 <Camera className="w-4 h-4" />
@@ -117,9 +162,11 @@ export default function GalleryPage() {
                         src={category.coverImage}
                         alt={category.title}
                         fill
+                        unoptimized={category.coverImage.includes('http')}
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
+
                       {/* Overlay on hover */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       {/* Photo count badge */}
