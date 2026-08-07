@@ -19,13 +19,17 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 raw_allowed_hosts = config('ALLOWED_HOSTS', default='')
 ALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(',') if host.strip()]
 
-# Railway injected public domain support
+# Render / Railway injected public domain support
+render_external_hostname = config('RENDER_EXTERNAL_HOSTNAME', default='')
+if render_external_hostname and render_external_hostname not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(render_external_hostname)
+
 railway_public_domain = config('RAILWAY_PUBLIC_DOMAIN', default='')
 if railway_public_domain and railway_public_domain not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(railway_public_domain)
 
-# Fallback subdomains for Railway apps
-for host in ['.railway.app', '.up.railway.app', 'localhost', '127.0.0.1']:
+# Fallback subdomains for hosting platforms
+for host in ['.onrender.com', '.railway.app', '.up.railway.app', 'localhost', '127.0.0.1']:
     if host not in ALLOWED_HOSTS:
         ALLOWED_HOSTS.append(host)
 
@@ -43,12 +47,17 @@ raw_csrf_trusted = config(
 )
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in raw_csrf_trusted.split(',') if origin.strip()]
 
+if render_external_hostname:
+    render_origin = f"https://{render_external_hostname}"
+    if render_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(render_origin)
+
 if railway_public_domain:
     railway_origin = f"https://{railway_public_domain}"
     if railway_origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(railway_origin)
 
-for domain in ['https://*.railway.app', 'https://*.up.railway.app']:
+for domain in ['https://*.onrender.com', 'https://*.railway.app', 'https://*.up.railway.app']:
     if domain not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(domain)
 
