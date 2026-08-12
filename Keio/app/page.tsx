@@ -12,7 +12,6 @@ import {
   Award,
   MessageSquare,
   Briefcase,
-  Star,
   ChevronRight,
   ChevronLeft,
   TrendingUp,
@@ -81,11 +80,6 @@ function StudentTestimonialCard({ testimonial, index }: { testimonial: Testimoni
           <div className="flex items-center gap-1.5 text-white/60 text-xs mt-1">
             <GradCap2 className="w-3 h-3" />
             <span className="leading-tight">{testimonial.credential}</span>
-          </div>
-          <div className="flex mt-3">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-            ))}
           </div>
         </div>
 
@@ -450,17 +444,16 @@ export default function Home() {
         </div>
 
         {/* 20+ Years Icon on right edge of red circle */}
-        <div className="hidden lg:flex absolute top-2 left-2 lg:top-35 lg:-translate-y-1/2 lg:left-[320px] z-40 pointer-events-none">
+        <div className="hidden lg:flex absolute top-2 left-2 lg:top-35 lg:-translate-y-1/2 lg:left-[250px] z-40 pointer-events-none">
           <div className="relative pointer-events-auto">
-            <div className="flex flex-col items-center justify-center bg-[#0B1A30] rounded-full border-[3px] border-white shadow-xl w-30 h-30">
-              <Award className="w-6 h-6 text-yellow-400" />
-              <div className="text-2xl font-black text-white leading-none drop-shadow-md">20+</div>
-              <div className="text-[10px] font-bold text-yellow-400 text-center uppercase tracking-wider leading-tight mt-0.5">Years of<br />Excellence</div>
-            </div>
-            {/* Yellow Star Badge */}
-            <div className="absolute top-1.5 -right-0.5 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center shadow-md border-[1.5px] border-white">
-              <Star className="w-2 h-2 text-[#0B1A30] fill-[#0B1A30]" />
-            </div>
+            <Image
+              src="/banners/20years_Logo.png"
+              alt="20+ Years Logo"
+              width={600}
+              height={600}
+              className="w-48 lg:w-55 h-auto object-contain drop-shadow-2xl"
+              priority
+            />
           </div>
         </div>
 

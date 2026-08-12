@@ -56,7 +56,7 @@ export function Navbar() {
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
               <div className="relative w-18 h-18 shrink-0">
-                <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} unoptimized sizes="(max-width: 800px) 100vw, 200px" />
+                <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} unoptimized sizes="(max-width: 800px) 100vw, 200px" priority />
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-yokohama-dark-text text-base sm:text-lg">YOKOHAMA LANGUAGE</span>
