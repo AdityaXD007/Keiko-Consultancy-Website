@@ -35,6 +35,15 @@ const nextConfig: NextConfig = {
 
 
   },
+  async redirects() {
+    return [
+      {
+        source: '/admin-yokohama',
+        destination: 'https://keiko-consultancy-website.onrender.com/admin/',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

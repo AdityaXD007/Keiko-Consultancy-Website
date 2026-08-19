@@ -56,18 +56,18 @@ export function GallerySection() {
 
 
   return (
-    <section className="py-20 bg-yokohama-light-bg">
+    <section className="py-10 sm:py-16 lg:py-20 bg-yokohama-light-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-yokohama-dark-text">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4 text-yokohama-dark-text">
             Our Gallery
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
             Explore memories and moments from our events, activities, and celebrations
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {featured.map((category, index) => (
             <motion.div
               key={category.id}

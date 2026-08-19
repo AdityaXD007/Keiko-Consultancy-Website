@@ -1,0 +1,158 @@
+===============================================================================
+               YOKOHAMA CONSULTANCY - BACKEND ADMIN USER GUIDE
+===============================================================================
+
+This guide explains how to use the admin panel features to manage website content,
+posts, popup announcements, and gallery photo albums.
+
+-------------------------------------------------------------------------------
+1. ACCESSING THE BACKEND ADMIN PANEL
+-------------------------------------------------------------------------------
+1. Open your web browser and go to the Admin URL:
+   - Local: http://127.0.0.1:8000/admin/
+   - Production: https://<your-domain>/admin/
+
+2. Log in using your Admin username and password.
+
+3. After logging in, you will see three main sections under "CONTENT":
+   - News & Notices
+   - Popup Announcements
+   - Gallery Albums
+
+
+-------------------------------------------------------------------------------
+2. NEWS & NOTICES (Form: Post)
+-------------------------------------------------------------------------------
+What it does:
+Manages news articles and official notices displayed on the website homepage 
+and the News/Notices page.
+
+How to add or edit a News/Notice:
+1. Click on "News & Notices" in the admin dashboard.
+2. Click the "+ Add News & Notice" button at the top right (or click an existing item to edit).
+3. Fill out the form fields:
+
+   - TITLE (Required):
+     Enter the headline (e.g., "April 2027 Student Visa Admission Open").
+
+   - SLUG (Auto-generated):
+     This generates automatically from the title and forms the web URL path 
+     (e.g., /news/april-2027-student-visa).
+
+   - TYPE (Dropdown):
+     Choose either "News" or "Notice".
+
+   - CONTENT (Required):
+     Enter the main body text. You can add paragraphs, bullet points, bold text, 
+     and links. HTML formatting is cleaned automatically for security.
+
+   - IMAGE (Optional):
+     Upload a banner or thumbnail photo for the article.
+
+   - IS PUBLISHED (Checkbox):
+     - Checked = Visible on the website.
+     - Unchecked = Saved as draft (hidden from public view).
+
+4. Click "Save" at the bottom right.
+
+IMPORTANT RULE - 60-DAY AUTO EXPIRATION:
+- Articles automatically expire and disappear from the website 60 days after 
+  creation to ensure visitors only see up-to-date notices.
+- The Admin dashboard shows status as:
+  * "Active (Visible)" = Published within the last 60 days.
+  * "Expired (>60 days)" = Older than 60 days (hidden automatically).
+  * "Unpublished" = Draft mode.
+
+
+-------------------------------------------------------------------------------
+3. POPUP ANNOUNCEMENTS (Form: PopupAnnouncement)
+-------------------------------------------------------------------------------
+What it does:
+Controls the popup banner/modal that appears to visitors when they open 
+the website homepage.
+
+How to create or update a Popup:
+1. Click on "Popup Announcements" in the admin dashboard.
+2. Click "+ Add Popup Announcement" or click an existing popup to edit.
+3. Fill out the form fields:
+
+   - BADGE TEXT:
+     Small tag line at the top (e.g., "ADMISSION OPEN" or "SPECIAL NOTICE").
+
+   - TITLE:
+     Main heading (e.g., "April Session 2027 Intake").
+
+   - DESCRIPTION:
+     Detailed text explanation displayed in the popup.
+
+   - HIGHLIGHT TEXT:
+     Highlighted line to grab attention (e.g., "Apply now for Student Visa!").
+
+   - BUTTON TEXT:
+     Text inside the call-to-action button (e.g., "Start Application").
+
+   - BUTTON LINK:
+     Web page link where the button directs visitors (e.g., /contact or /courses).
+
+   - IMAGE (Optional):
+     Upload a promotional poster or banner image.
+
+   - IS ACTIVE (Checkbox):
+     - Checked = Show this popup modal on the website homepage.
+     - Unchecked = Disable this popup.
+
+4. Click "Save".
+
+NOTE:
+- Only the latest ACTIVE popup will be shown on the website homepage.
+- To turn off popups completely, uncheck "Is Active" on all popups.
+
+
+-------------------------------------------------------------------------------
+4. GALLERY ALBUMS & PHOTOS (Form: GalleryAlbum)
+-------------------------------------------------------------------------------
+What it does:
+Manages photo galleries (events, ceremonies, student success stories) shown 
+on the /gallery section of the website.
+
+How to create a Photo Album with Photos:
+1. Click on "Gallery Albums" in the admin dashboard.
+2. Click "+ Add Gallery Album".
+3. Fill out the Album details:
+
+   - TITLE (Required):
+     Name of the event or album (e.g., "Japan-Nepal 70 Years of Friendship").
+
+   - SLUG (Auto-generated):
+     Auto-fills from title (e.g., /gallery/japan-nepal-70-years).
+
+   - DESCRIPTION (Optional):
+     Brief explanation about the event or photos.
+
+   - COVER IMAGE (Optional):
+     Upload a main cover photo for the album card. If left blank, the website 
+     automatically uses the first uploaded photo inside the album.
+
+   - IS PUBLISHED (Checkbox):
+     - Checked = Album is visible in the public gallery.
+     - Unchecked = Hidden draft.
+
+4. Add Photos to the Album (Inline Section below):
+   - Under "GALLERY PHOTOS":
+     * IMAGE: Choose photo file to upload.
+     * CAPTION (Optional): Short description for the photo.
+     * ORDER: Sequence number (0 = first photo, 1 = second, etc.).
+   - Click "Add another Gallery Photo" to add more photos to the same album.
+
+5. Click "Save".
+
+
+===============================================================================
+                              QUICK SUMMARY TABLE
+===============================================================================
+Feature           | Admin Section        | Primary Function
+------------------+----------------------+-------------------------------------
+News & Notices    | News & Notices       | Publish articles & time-limited notices
+Popup Modal       | Popup Announcements  | Homepage pop-up banner announcements
+Photo Galleries   | Gallery Albums       | Upload photo albums with captions
+===============================================================================
