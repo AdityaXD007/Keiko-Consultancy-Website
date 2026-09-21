@@ -34,11 +34,11 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm">
           <div className="flex space-x-6">
             <div className="flex items-center space-x-2">
-              <Phone size={14} className="text-yokohama-red" />
+              <Phone size={14} className="text-yokohama-white" />
               <span>061-585559</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Mail size={14} className="text-yokohama-red" />
+              <Mail size={14} className="text-yokohama-white" />
               <span>pkryokohama@gmail.com</span>
             </div>
           </div>

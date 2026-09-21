@@ -360,7 +360,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      <section className="relative h-[300px] sm:h-[400px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group">
+      <section className="relative h-[480px] sm:h-[520px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group">
         {/* Background Image */}
         <div className="absolute inset-y-0 right-0 left-0 lg:left-[400px] z-0 bg-gray-900">
           <AnimatePresence mode="wait">
@@ -376,25 +376,25 @@ export default function Home() {
             />
           </AnimatePresence>
           {/* Mobile dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/65 lg:hidden z-10 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-black/55 lg:hidden z-10 pointer-events-none"></div>
         </div>
 
         {/* Left Red Semi-Circle Background */}
         <div className="hidden lg:block absolute z-10 inset-0 lg:auto lg:top-1/2 lg:-translate-y-1/2 lg:-left-[550px] lg:w-[1100px] lg:h-[1100px] lg:rounded-full bg-yokohama-red shadow-2xl pointer-events-none"></div>
 
         {/* Content Container */}
-        <div className="flex absolute z-20 inset-0 w-full h-full lg:left-0 flex-col justify-center px-6 sm:px-10 lg:pl-24 lg:pr-8 lg:w-[550px] pointer-events-none text-center lg:text-left items-center lg:items-start">
+        <div className="flex absolute z-20 inset-0 w-full h-full lg:left-0 flex-col justify-center px-4 sm:px-8 lg:pl-24 lg:pr-8 lg:w-[550px] pointer-events-none text-center lg:text-left items-center lg:items-start">
           <div className="w-full pointer-events-auto pt-0 text-white flex flex-col items-center lg:items-start">
             {/* Admission Open Pill */}
-            <div className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-xs rounded-full px-3 py-1 mb-4 border border-white/30">
-              <GraduationCap className="w-3.5 h-3.5 text-white" />
-              <span className="text-xs font-semibold tracking-wide">Admission Open</span>
+            <div className="inline-flex items-center space-x-2 bg-black/40 backdrop-blur-sm rounded-full px-4 py-1.5 mb-3 sm:mb-4 border border-white/20">
+              <GraduationCap className="w-4 h-4 text-white" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wide text-white">Admission Open</span>
             </div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 leading-tight text-white drop-shadow-md"
+              className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 leading-tight text-white drop-shadow-md text-center lg:text-left"
             >
               Your Journey to<br />Japan Starts Here
             </motion.h1>
@@ -402,17 +402,19 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-base sm:text-lg lg:text-xl mb-6 lg:mb-8 text-white max-w-sm lg:max-w-none drop-shadow"
+              className="text-xs sm:text-sm md:text-base lg:text-xl mb-6 lg:mb-8 text-white max-w-sm sm:max-w-md lg:max-w-none drop-shadow text-center lg:text-left"
             >
               Learn Japanese, receive expert guidance, and secure admission to top institutions in Japan.
             </motion.p>
 
-            <div className="flex flex-wrap gap-3 lg:gap-4 justify-center lg:justify-start">
-              <Link href="/courses" className="bg-white text-yokohama-red px-5 py-2.5 lg:px-6 lg:py-3 rounded text-sm lg:text-base font-bold hover:bg-gray-100 transition-colors shadow-lg">
-                Explore Courses
+            <div className="flex flex-row items-center justify-center lg:justify-start gap-2.5 sm:gap-4">
+              <Link href="/courses" className="inline-flex items-center justify-center gap-2 bg-yokohama-red hover:bg-yokohama-red-dark text-white px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-colors shadow-lg">
+                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-white shrink-0" />
+                <span>Explore Courses</span>
               </Link>
-              <Link href="/contact" className="border-2 border-white text-white px-5 py-2.5 lg:px-6 lg:py-3 rounded text-sm lg:text-base font-bold hover:bg-white/10 transition-colors shadow-lg">
-                Free Consultation
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-yokohama-red px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-colors shadow-lg">
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-yokohama-red shrink-0" />
+                <span>Free Consultation</span>
               </Link>
             </div>
           </div>
@@ -444,14 +446,14 @@ export default function Home() {
         </div>
 
         {/* 20+ Years Icon */}
-        <div className="flex absolute top-1.5 left-1 sm:top-3 sm:left-3 lg:top-45 lg:-translate-y-1/2 lg:left-[250px] z-40 pointer-events-none">
+        <div className="flex absolute top-2 left-2 sm:top-4 sm:left-4 lg:top-45 lg:-translate-y-1/2 lg:left-[250px] z-30 pointer-events-none">
           <div className="relative pointer-events-auto">
             <Image
               src="/banners/20years_Logo.png"
               alt="20+ Years Logo"
               width={600}
               height={600}
-              className="w-38 sm:w-48 lg:w-55 h-auto object-contain drop-shadow-2xl"
+              className="w-44 sm:w-52 lg:w-55 h-auto object-contain drop-shadow-2xl"
               priority
             />
           </div>
