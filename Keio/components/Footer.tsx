@@ -38,7 +38,8 @@ export function Footer() {
             </div>
           </div>
 
-          <div>
+          <div className='grid lg:grid-cols-3 grid-cols-2 sm:grid-cols-2 gap-10 lg:gap-80'>
+            <div className='w-[400px]'>
             <h3 className="font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
@@ -64,7 +65,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className='w-[400px]'>
             <h3 className="font-bold mb-4">Courses</h3>
             <ul className="space-y-2">
               <li>
@@ -95,7 +96,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className='w-[400px]'>
             <h3 className="font-bold mb-4">Contact Info</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3 text-sm">
@@ -113,6 +114,7 @@ export function Footer() {
                 <span className="text-gray-400">pkryokohama@gmail.com</span>
               </li>
             </ul>
+          </div>
           </div>
         </div>
 

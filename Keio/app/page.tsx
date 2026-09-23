@@ -461,9 +461,9 @@ export default function Home() {
             <Image
               src="/banners/20years_Logo.png"
               alt="20+ Years Logo"
-              width={600}
-              height={600}
-              className="w-32 sm:w-40 md:w-44 lg:w-55 h-auto object-contain drop-shadow-2xl"
+              width={700}
+              height={700}
+              className="w-60 sm:w-40 md:w-50 lg:w-60 h-auto object-contain drop-shadow-2xl"
               priority
             />
           </div>
