@@ -27,9 +27,6 @@ import { GallerySection } from '@/components/GallerySection';
 import { NewsNoticesSection } from '@/components/NewsNoticesSection';
 import type { PopupAnnouncement } from '@/lib/api/types';
 
-// ---------------------------------------------------------------------------
-// API base — reads from env, falls back to same-origin relative paths
-// ---------------------------------------------------------------------------
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? '';
 
 // ---------------------------------------------------------------------------
@@ -161,7 +158,6 @@ export default function Home() {
     '/banners/Banner3.jpeg',
   ];
 
-  // --- Popup fetch -------------------------------------------------------
   useEffect(() => {
     let cancelled = false;
 
@@ -196,7 +192,6 @@ export default function Home() {
     };
   }, []);
 
-  // --- Carousel ----------------------------------------------------------
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
   }, [heroImages.length]);
@@ -210,7 +205,6 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  // --- Static content ----------------------------------------------------
   const stats = [
     { label: 'Students Guided', value: '500+', icon: Users },
     { label: 'Visa Success', value: '95%', icon: CheckCircle2 },
@@ -417,15 +411,15 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full max-w-full overflow-x-hidden">
       <Navbar />
 
       {/* ===================================================================
           HERO SECTION
           Desktop (lg+): UNCHANGED — original layout preserved
-          Mobile/Tablet: Logo TOP (centered), content BELOW (centered)
+          Mobile/Tablet: Logo TOP (bigger), content BELOW, centered
           =================================================================== */}
-      <section className="relative h-[640px] sm:h-[700px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group">
+      <section className="relative h-[660px] sm:h-[720px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group w-full max-w-full">
         {/* Background Image */}
         <div className="absolute inset-y-0 right-0 left-0 lg:left-[400px] z-0 bg-gray-900">
           <AnimatePresence mode="wait">
@@ -451,28 +445,22 @@ export default function Home() {
             Mobile/Tablet: flex-col, centered — logo TOP, content BELOW
             Desktop: block (neutralized) — original absolute positioning
             ============================================================= */}
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 sm:gap-7 px-6 sm:px-10 lg:block lg:justify-start lg:gap-0 lg:px-0 lg:w-full pointer-events-none">
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 sm:gap-8 px-5 sm:px-10 lg:block lg:justify-start lg:gap-0 lg:px-0 lg:w-full pointer-events-none overflow-hidden">
 
-          {/* ---------------------------------------------------------
-              20+ YEARS LOGO — TOP, centered on mobile/tablet
-              Desktop: EXACT original absolute position on red circle
-              --------------------------------------------------------- */}
+          {/* 20+ YEARS LOGO — TOP, BIGGER, centered */}
           <div className="flex-shrink-0 pointer-events-auto lg:absolute lg:top-45 lg:-translate-y-1/2 lg:left-[250px] lg:z-30">
             <Image
               src="/banners/20years_Logo.png"
               alt="20+ Years Logo"
               width={700}
               height={700}
-              className="w-60 sm:w-40 md:w-50 lg:w-60 h-auto object-contain drop-shadow-2xl"
+              className="w-40 sm:w-52 md:w-56 lg:w-55 h-auto object-contain drop-shadow-2xl"
               priority
             />
           </div>
 
-          {/* ---------------------------------------------------------
-              TEXT CONTENT — BELOW, centered on mobile/tablet
-              Desktop: EXACT original absolute layout (w-550, pl-24)
-              --------------------------------------------------------- */}
-          <div className="w-full max-w-sm sm:max-w-lg pointer-events-auto text-white flex flex-col items-center text-center lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center lg:pl-24 lg:pr-8 lg:w-[550px] lg:max-w-none lg:items-start lg:text-left">
+          {/* TEXT CONTENT — BELOW, centered */}
+          <div className="w-full max-w-[20rem] sm:max-w-md pointer-events-auto text-white flex flex-col items-center text-center lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center lg:pl-24 lg:pr-8 lg:w-[550px] lg:max-w-none lg:items-start lg:text-left">
 
             {/* Admission Open Pill */}
             <div className="inline-flex items-center space-x-2 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-1.5 mb-3.5 sm:mb-4 lg:mb-4 border border-white/20">
@@ -496,7 +484,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-sm sm:text-base md:text-base lg:text-xl mb-5 sm:mb-6 lg:mb-8 text-white/95 lg:text-white drop-shadow max-w-md lg:max-w-none text-center lg:text-left leading-snug"
+              className="text-sm sm:text-base md:text-base lg:text-xl mb-5 sm:mb-6 lg:mb-8 text-white/95 lg:text-white drop-shadow text-center lg:text-left leading-snug"
             >
               Learn Japanese, receive expert guidance, and secure admission to
               top institutions in Japan.
@@ -506,14 +494,14 @@ export default function Home() {
             <div className="flex flex-row flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5 lg:gap-4">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-yokohama-red hover:bg-yokohama-red-dark text-white px-5 py-3 sm:px-6 sm:py-3.5 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-base font-bold transition-colors shadow-lg"
+                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-yokohama-red hover:bg-yokohama-red-dark text-white px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-base font-bold transition-colors shadow-lg"
               >
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 text-white shrink-0" />
                 <span className="whitespace-nowrap">Explore Courses</span>
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-white hover:bg-gray-100 text-yokohama-red px-5 py-3 sm:px-6 sm:py-3.5 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-base font-bold transition-colors shadow-lg"
+                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-white hover:bg-gray-100 text-yokohama-red px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-base font-bold transition-colors shadow-lg"
               >
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 text-yokohama-red shrink-0" />
                 <span className="whitespace-nowrap">Free Consultation</span>
