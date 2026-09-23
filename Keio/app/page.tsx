@@ -423,9 +423,9 @@ export default function Home() {
       {/* ===================================================================
           HERO SECTION
           Desktop (lg+): UNCHANGED — original layout preserved
-          Mobile/Tablet: Logo LEFT, Content RIGHT (side by side, larger sizes)
+          Mobile/Tablet: Logo TOP (centered), content BELOW (centered)
           =================================================================== */}
-      <section className="relative h-[540px] sm:h-[580px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group">
+      <section className="relative h-[640px] sm:h-[700px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group">
         {/* Background Image */}
         <div className="absolute inset-y-0 right-0 left-0 lg:left-[400px] z-0 bg-gray-900">
           <AnimatePresence mode="wait">
@@ -440,7 +440,7 @@ export default function Home() {
               className="w-full h-full object-cover lg:object-center opacity-65 lg:opacity-100"
             />
           </AnimatePresence>
-          <div className="absolute inset-0 bg-black/55 lg:hidden z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-black/60 lg:hidden z-10 pointer-events-none" />
         </div>
 
         {/* Left Red Semi-Circle (desktop only) */}
@@ -448,15 +448,13 @@ export default function Home() {
 
         {/* =============================================================
             CONTENT WRAPPER
-            Mobile/Tablet: flex-row — logo LEFT, content RIGHT
-            Desktop: block (neutralized) so children revert to original
-                     absolute positioning exactly as before
+            Mobile/Tablet: flex-col, centered — logo TOP, content BELOW
+            Desktop: block (neutralized) — original absolute positioning
             ============================================================= */}
-        <div className="absolute inset-0 z-20 flex flex-row items-center justify-center gap-4 sm:gap-6 lg:block lg:justify-start lg:gap-0 lg:px-0 lg:w-full pointer-events-none">
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 sm:gap-7 px-6 sm:px-10 lg:block lg:justify-start lg:gap-0 lg:px-0 lg:w-full pointer-events-none">
 
           {/* ---------------------------------------------------------
-              20+ YEARS LOGO
-              Mobile/Tablet: inline flex child (w-24 / w-32 / w-36)
+              20+ YEARS LOGO — TOP, centered on mobile/tablet
               Desktop: EXACT original absolute position on red circle
               --------------------------------------------------------- */}
           <div className="flex-shrink-0 pointer-events-auto lg:absolute lg:top-45 lg:-translate-y-1/2 lg:left-[250px] lg:z-30">
@@ -465,22 +463,21 @@ export default function Home() {
               alt="20+ Years Logo"
               width={600}
               height={600}
-              className="w-24 sm:w-32 md:w-36 lg:w-55 h-auto object-contain drop-shadow-2xl"
+              className="w-32 sm:w-40 md:w-44 lg:w-55 h-auto object-contain drop-shadow-2xl"
               priority
             />
           </div>
 
           {/* ---------------------------------------------------------
-              TEXT CONTENT
-              Mobile/Tablet: flex child taking remaining width
+              TEXT CONTENT — BELOW, centered on mobile/tablet
               Desktop: EXACT original absolute layout (w-550, pl-24)
               --------------------------------------------------------- */}
-          <div className="flex-1 min-w-0 pointer-events-auto text-white flex flex-col items-start lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center lg:pl-24 lg:pr-8 lg:w-[550px] lg:items-start lg:text-left">
+          <div className="w-full max-w-sm sm:max-w-lg pointer-events-auto text-white flex flex-col items-center text-center lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center lg:pl-24 lg:pr-8 lg:w-[550px] lg:max-w-none lg:items-start lg:text-left">
 
             {/* Admission Open Pill */}
-            <div className="inline-flex items-center space-x-2 bg-black/40 backdrop-blur-sm rounded-full px-3.5 py-1.5 sm:px-4 sm:py-2 lg:px-4 lg:py-1.5 mb-2.5 sm:mb-3.5 lg:mb-4 border border-white/20">
+            <div className="inline-flex items-center space-x-2 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-1.5 mb-3.5 sm:mb-4 lg:mb-4 border border-white/20">
               <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4 text-white" />
-              <span className="text-[11px] sm:text-[13px] lg:text-sm font-semibold tracking-wide text-white whitespace-nowrap">
+              <span className="text-xs sm:text-sm lg:text-sm font-semibold tracking-wide text-white whitespace-nowrap">
                 Admission Open
               </span>
             </div>
@@ -488,7 +485,7 @@ export default function Home() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 lg:mb-4 leading-tight text-white drop-shadow-md text-left"
+              className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-4 lg:mb-4 leading-tight text-white drop-shadow-md text-center lg:text-left"
             >
               Your Journey to
               <br />
@@ -499,24 +496,24 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[13px] sm:text-sm md:text-base lg:text-xl mb-4 sm:mb-5 lg:mb-8 text-white/95 lg:text-white drop-shadow max-w-md lg:max-w-none text-left leading-snug"
+              className="text-sm sm:text-base md:text-base lg:text-xl mb-5 sm:mb-6 lg:mb-8 text-white/95 lg:text-white drop-shadow max-w-md lg:max-w-none text-center lg:text-left leading-snug"
             >
               Learn Japanese, receive expert guidance, and secure admission to
               top institutions in Japan.
             </motion.p>
 
             {/* Buttons */}
-            <div className="flex flex-row flex-wrap items-center justify-start gap-2.5 sm:gap-3.5 lg:gap-4">
+            <div className="flex flex-row flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5 lg:gap-4">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-yokohama-red hover:bg-yokohama-red-dark text-white px-4 py-2.5 sm:px-5 sm:py-3 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-colors shadow-lg"
+                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-yokohama-red hover:bg-yokohama-red-dark text-white px-5 py-3 sm:px-6 sm:py-3.5 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-base font-bold transition-colors shadow-lg"
               >
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 text-white shrink-0" />
                 <span className="whitespace-nowrap">Explore Courses</span>
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-white hover:bg-gray-100 text-yokohama-red px-4 py-2.5 sm:px-5 sm:py-3 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-colors shadow-lg"
+                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-2 bg-white hover:bg-gray-100 text-yokohama-red px-5 py-3 sm:px-6 sm:py-3.5 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base lg:text-base font-bold transition-colors shadow-lg"
               >
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 text-yokohama-red shrink-0" />
                 <span className="whitespace-nowrap">Free Consultation</span>
