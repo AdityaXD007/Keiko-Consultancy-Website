@@ -8,6 +8,8 @@ __pycache__/
 env/
 venv/
 ENV/
+.env.production
+.env
 
 # Database & Secret files
 db.sqlite3

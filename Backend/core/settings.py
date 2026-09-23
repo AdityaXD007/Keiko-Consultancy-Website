@@ -1,70 +1,116 @@
 """
-Django settings for core project.
+Django settings for core project — supports development and production.
+
+Environment selection is driven by env vars (via python-decouple):
+  - Local dev  -> .env (DEBUG=True, local Postgres, filesystem media)
+  - Production -> env vars set on Railway/Render (DEBUG=False, Neon Postgres, Cloudinary)
 """
 
 from pathlib import Path
-from decouple import config, Csv
+import socket
 import dj_database_url
+from decouple import config, Csv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# ---------------------------------------------------------------------------
+# Base paths
+# ---------------------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Fail-Safe Production Defaults:
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-railway-build-placeholder-key-change-me-in-prod')
 
-# DEBUG defaults strictly to False
+# ---------------------------------------------------------------------------
+# Core security
+# ---------------------------------------------------------------------------
+SECRET_KEY = config(
+    'SECRET_KEY',
+    default='django-insecure-dev-only-change-me-in-production-1234567890',
+)
+
+# DEBUG defaults to False for safety (production-friendly)
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# ALLOWED_HOSTS Hardening:
-raw_allowed_hosts = config('ALLOWED_HOSTS', default='')
-ALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(',') if host.strip()]
+# A single flag that clearly identifies the environment in logs / templates
+ENVIRONMENT = config('ENVIRONMENT', default='development' if DEBUG else 'production')
 
-# Render / Railway injected public domain support
+
+# ---------------------------------------------------------------------------
+# Allowed hosts
+# ---------------------------------------------------------------------------
+raw_allowed_hosts = config('ALLOWED_HOSTS', default='')
+ALLOWED_HOSTS = [h.strip() for h in raw_allowed_hosts.split(',') if h.strip()]
+
+# Hosting platform hostnames (injected automatically)
 render_external_hostname = config('RENDER_EXTERNAL_HOSTNAME', default='')
+railway_public_domain = config('RAILWAY_PUBLIC_DOMAIN', default='')
+
 if render_external_hostname and render_external_hostname not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(render_external_hostname)
 
-railway_public_domain = config('RAILWAY_PUBLIC_DOMAIN', default='')
 if railway_public_domain and railway_public_domain not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(railway_public_domain)
 
-# Fallback subdomains for hosting platforms
-for host in ['.onrender.com', '.railway.app', '.up.railway.app', 'localhost', '127.0.0.1']:
-    if host not in ALLOWED_HOSTS:
-        ALLOWED_HOSTS.append(host)
+# Environment-specific host fallbacks
+if DEBUG:
+    for host in ['localhost', '127.0.0.1', '0.0.0.0']:
+        if host not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(host)
+else:
+    for host in ['.up.railway.app', '.railway.app', '.onrender.com']:
+        if host not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(host)
 
-# HTTPS / Proxy Header Fix:
+
+# ---------------------------------------------------------------------------
+# HTTPS / Proxy / Cookies
+# ---------------------------------------------------------------------------
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# In dev: never redirect to HTTPS. In prod: default to True (can override via env).
 SECURE_SSL_REDIRECT = False if DEBUG else config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 
+# HSTS — only meaningful in production behind HTTPS
+if not DEBUG:
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=31536000, cast=int)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=True, cast=bool)
 
-# CSRF Trusted Origins (handles apex, www, and Railway public domains)
+
+# ---------------------------------------------------------------------------
+# CSRF trusted origins
+# ---------------------------------------------------------------------------
 raw_csrf_trusted = config(
     'CSRF_TRUSTED_ORIGINS',
     default='https://yokohama.edu.np,https://www.yokohama.edu.np',
 )
-CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in raw_csrf_trusted.split(',') if origin.strip()]
+CSRF_TRUSTED_ORIGINS = [o.strip() for o in raw_csrf_trusted.split(',') if o.strip()]
+
+if DEBUG:
+    # Local dev origins
+    for origin in ['http://localhost:8000', 'http://127.0.0.1:8000',
+                   'http://localhost:3000', 'http://127.0.0.1:3000']:
+        if origin not in CSRF_TRUSTED_ORIGINS:
+            CSRF_TRUSTED_ORIGINS.append(origin)
 
 if render_external_hostname:
-    render_origin = f"https://{render_external_hostname}"
-    if render_origin not in CSRF_TRUSTED_ORIGINS:
-        CSRF_TRUSTED_ORIGINS.append(render_origin)
+    origin = f"https://{render_external_hostname}"
+    if origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(origin)
 
 if railway_public_domain:
-    railway_origin = f"https://{railway_public_domain}"
-    if railway_origin not in CSRF_TRUSTED_ORIGINS:
-        CSRF_TRUSTED_ORIGINS.append(railway_origin)
+    origin = f"https://{railway_public_domain}"
+    if origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(origin)
 
-for domain in ['https://*.onrender.com', 'https://*.railway.app', 'https://*.up.railway.app']:
-    if domain not in CSRF_TRUSTED_ORIGINS:
-        CSRF_TRUSTED_ORIGINS.append(domain)
+for wildcard in ['https://*.onrender.com', 'https://*.railway.app', 'https://*.up.railway.app']:
+    if wildcard not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(wildcard)
 
 
-
-# Application definition
-
+# ---------------------------------------------------------------------------
+# Applications
+# ---------------------------------------------------------------------------
 INSTALLED_APPS = [
     'unfold',
     'django.contrib.admin',
@@ -74,14 +120,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    
-    # Third-party apps
+    # Third-party
     'cloudinary_storage',
     'cloudinary',
     'rest_framework',
     'corsheaders',
-    
-    # Local apps
+
+    # Local
     'content',
 ]
 
@@ -115,9 +160,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+ASGI_APPLICATION = 'core.asgi.application'
 
 
-# Database — Neon PostgreSQL (no SQLite fallback)
+# ---------------------------------------------------------------------------
+# Database
+# ---------------------------------------------------------------------------
 DATABASE_URL = config('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.parse(
@@ -127,8 +175,7 @@ DATABASES = {
     )
 }
 
-# Force IPv4 — Neon resolves to both IPv6 and IPv4 but IPv6 is unreliable
-import socket
+# Neon resolves to both IPv6 & IPv4; IPv6 can be unreliable — force IPv4.
 _neon_host = DATABASES['default'].get('HOST', '')
 if _neon_host:
     try:
@@ -137,79 +184,90 @@ if _neon_host:
     except (socket.gaierror, IndexError):
         pass  # fall back to normal resolution
 
-# PgBouncer (Neon pooler) doesn't support server-side cursors
+# PgBouncer (Neon pooler) doesn't support server-side cursors.
 DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS'] = True
 
 
+# ---------------------------------------------------------------------------
 # Password validation
-
+# ---------------------------------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
+# ---------------------------------------------------------------------------
 # Internationalization
-
+# ---------------------------------------------------------------------------
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Kathmandu'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-
+# ---------------------------------------------------------------------------
+# Static & media files
+# ---------------------------------------------------------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Media files (Uploaded images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Cloudinary Configuration
+# Cloudinary config — blank in dev → filesystem storage; real in prod → Cloudinary.
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
     'API_KEY': config('CLOUDINARY_API_KEY', default=''),
     'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
 }
 
-cloudinary_name = CLOUDINARY_STORAGE['CLOUD_NAME'].strip()
-use_cloudinary = bool(cloudinary_name and cloudinary_name != 'your_cloud_name_here')
+_cloudinary_name = CLOUDINARY_STORAGE['CLOUD_NAME'].strip()
+use_cloudinary = bool(_cloudinary_name and _cloudinary_name != 'your_cloud_name_here')
 
 STORAGES = {
     "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage" if use_cloudinary else "django.core.files.storage.FileSystemStorage",
+        "BACKEND": (
+            "cloudinary_storage.storage.MediaCloudinaryStorage"
+            if use_cloudinary
+            else "django.core.files.storage.FileSystemStorage"
+        ),
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
+# In dev, WhiteNoise's manifest storage can complain if staticfiles/ is empty.
+# Use the non-manifest version so `runserver` doesn't blow up locally.
+if DEBUG:
+    STORAGES["staticfiles"] = {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    }
 
-# CORS Configuration for yokohama.edu.np (apex + www domain support) and local dev
+
+# ---------------------------------------------------------------------------
+# CORS
+# ---------------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='https://yokohama.edu.np,https://www.yokohama.edu.np,http://localhost:3000',
-    cast=Csv()
+    default=(
+        'http://localhost:3000,http://127.0.0.1:3000'
+        if DEBUG
+        else 'https://yokohama.edu.np,https://www.yokohama.edu.np'
+    ),
+    cast=Csv(),
 )
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://.*\.vercel\.app$",
 ]
 
-# REST Framework Configuration
+
+# ---------------------------------------------------------------------------
+# DRF
+# ---------------------------------------------------------------------------
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -224,10 +282,44 @@ REST_FRAMEWORK = {
     },
 }
 
-# Django Unfold Configuration
+
+# ---------------------------------------------------------------------------
+# Django Unfold (Admin theme)
+# ---------------------------------------------------------------------------
 UNFOLD = {
     "SITE_TITLE": "Yokohama Admin",
     "SITE_HEADER": "Yokohama Consultancy Admin",
     "SITE_URL": "https://www.yokohama.edu.np/",
 }
 
+
+# ---------------------------------------------------------------------------
+# Logging — cleaner output, more verbose in dev
+# ---------------------------------------------------------------------------
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[{levelname}] {asctime} {name}: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG' if DEBUG else 'INFO',
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG' if DEBUG else 'WARNING',
+            'propagate': False,
+        },
+    },
+}
