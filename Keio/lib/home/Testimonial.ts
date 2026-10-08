@@ -19,7 +19,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     location: 'Takamatsu, Kagawa Prefecture',
     year: 'April 2014 — Japan',
     credential: 'Anabuki Gakuen / Anabuki Vocational School Graduate',
-    image: '/Testimonials/Madan Nepali.jpeg',
+    image: '/Testimonials/Madan Nepali.webp',
     reviewJa:
       '日本留学を目指す皆様へ\n' +
       '私は、ネパール・ポカラのチプレドゥンガにある Yokohama Consultancy のサポートを受け、2014年4月に日本へ留学しました。\n' +
@@ -46,7 +46,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     year: 'April 2018 — Japan',
     credential:
       'Kurume Seminar Language School / Japanese University of Economics Graduate',
-    image: '/Testimonials/Bimal Gurung.jpeg',
+    image: '/Testimonials/Bimal Gurung.webp',
     reviewJa:
       '日本への旅 🇯🇵\n' +
       '私は幼い頃から、留学生として海外で学ぶことを夢見ていました。+2課程を修了した後、さらに勉強を続けるために日本へ来ることを決意しました。\n' +

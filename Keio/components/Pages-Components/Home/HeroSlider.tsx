@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { GraduationCap, BookOpen, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HeroSliderProps {
@@ -30,36 +30,47 @@ export function HeroSlider({ images }: HeroSliderProps) {
   return (
     <section className="relative h-[660px] sm:h-[720px] lg:h-[700px] mt-20 flex flex-col lg:block overflow-hidden bg-gray-900 group w-full max-w-full">
       <div className="absolute inset-y-0 right-0 left-0 lg:left-[400px] z-0 bg-gray-900">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentSlide}
-            src={images[currentSlide]}
-            alt=""
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full h-full object-cover lg:object-center opacity-65 lg:opacity-100"
-          />
-        </AnimatePresence>
+        {images.map((src, index) => {
+          const isActive = index === currentSlide;
+          return (
+            <div
+              key={src}
+              className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                isActive ? 'opacity-65 lg:opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              <Image
+                src={src}
+                alt="Yokohama Language Consultancy campus and students preparing for Japan"
+                fill
+                priority={index === 0}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                loading={index === 0 ? undefined : 'lazy'}
+                sizes="(max-width: 1024px) 100vw, calc(100vw - 400px)"
+                className="object-cover lg:object-center"
+              />
+            </div>
+          );
+        })}
         <div className="absolute inset-0 bg-black/60 lg:hidden z-10 pointer-events-none" />
       </div>
 
       <div className="hidden lg:block absolute z-10 top-1/2 -translate-y-1/2 -left-[550px] w-[1100px] h-[1100px] rounded-full bg-yokohama-red shadow-2xl pointer-events-none" />
 
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 sm:gap-8 px-5 sm:px-10 lg:block lg:px-0 lg:w-full pointer-events-none overflow-hidden">
-        <div className="flex-shrink-0 pointer-events-auto lg:absolute lg:top-45 lg:-translate-y-1/2 lg:left-[250px] lg:z-30">
+        <div className="flex-shrink-0 pointer-events-auto lg:absolute lg:top-45 lg:-translate-y-1/2 lg:left-[250px] lg:z-30 w-40 sm:w-52 md:w-56 lg:w-55 aspect-[1/1] relative">
           <Image
-            src="/banners/20years_Logo.png"
+            src="/banners/20years_Logo.webp"
             alt="20+ Years Logo"
-            width={700}
-            height={700}
-            className="w-40 sm:w-52 md:w-56 lg:w-55 h-auto object-contain drop-shadow-2xl"
+            width={220}
+            height={220}
+            sizes="(max-width: 768px) 280px, 220px"
+            className="w-full h-full object-contain drop-shadow-2xl"
             priority
           />
         </div>
 
-        <div className="w-full max-w-[20rem] sm:max-w-md pointer-events-auto text-white flex flex-col items-center text-center lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center lg:pl-24 lg:pr-8 lg:w-[550px] lg:max-w-none lg:items-start lg:text-left">
+        <div className="w-full max-w-[20rem] sm:max-w-md pointer-events-auto text-white flex flex-col items-center text-center lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center lg:pl-24 lg:pr-8 lg:w-[550px] lg:max-w-none lg:items-start lg:text-left min-h-[300px] sm:min-h-[340px]">
           <div className="inline-flex items-center space-x-2 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-1.5 mb-3.5 sm:mb-4 border border-white/20">
             <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             <span className="text-xs sm:text-sm font-semibold tracking-wide text-white whitespace-nowrap">

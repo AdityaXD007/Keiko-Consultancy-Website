@@ -14,10 +14,12 @@ interface GalleryLightboxProps {
 
 export function GalleryLightbox({ images, initialIndex, isOpen, onClose }: GalleryLightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [prevInitialIndex, setPrevInitialIndex] = useState(initialIndex);
 
-  useEffect(() => {
+  if (initialIndex !== prevInitialIndex) {
+    setPrevInitialIndex(initialIndex);
     setCurrentIndex(initialIndex);
-  }, [initialIndex]);
+  }
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length);

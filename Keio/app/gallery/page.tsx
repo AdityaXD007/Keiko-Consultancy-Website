@@ -19,15 +19,15 @@ export default function GalleryPage() {
         const res = await fetch('/api/gallery');
         const data = await res.json();
         if (data.albums && data.albums.length > 0) {
-          const mapped: GalleryCategory[] = data.albums.map((item: any) => {
+          const mapped: GalleryCategory[] = data.albums.map((item: { id?: number | string; slug: string; title: string; description?: string; cover_image_url?: string; cover_image?: string; photos?: Array<{ image: string }> }) => {
             const staticItem = galleryCategories.find((c) => c.slug === item.slug);
             const photosList = item.photos && item.photos.length > 0
-              ? item.photos.map((p: any) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
+              ? item.photos.map((p: { image: string }) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
               : (staticItem ? staticItem.images : []);
 
-            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.jpeg';
+            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.webp';
             if (item.cover_image_url || item.cover_image) {
-              const rawCover = item.cover_image_url || item.cover_image;
+              const rawCover = item.cover_image_url || item.cover_image || '';
               cover = rawCover.startsWith('http') ? rawCover : `http://127.0.0.1:8000${rawCover}`;
             } else if (photosList.length > 0) {
               cover = photosList[0];
@@ -76,10 +76,11 @@ export default function GalleryPage() {
       <section className="relative h-[400px] mt-20 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/banners/Banner2.jpeg"
+            src="/banners/Banner2.webp"
             alt="Gallery Banner"
             fill
             priority
+            loading="eager"
             className="object-cover brightness-50"
             sizes="100vw"
           />

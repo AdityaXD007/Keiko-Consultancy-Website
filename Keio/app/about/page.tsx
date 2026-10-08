@@ -169,9 +169,11 @@ export default function About() {
               className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="/about/About1.jpeg"
+                src="/about/About1.webp"
                 alt="Our classroom"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
           </div>
@@ -184,9 +186,11 @@ export default function About() {
               className="order-2 lg:order-1 relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="/about/About2.jpeg"
+                src="/about/About2.webp"
                 alt="Tokyo"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
             <motion.div
@@ -211,7 +215,7 @@ export default function About() {
                 </h2>
               </div>
               <p className="text-gray-600">
-                To be the most trusted and preferred educational consultancy in Nepal, recognized for our integrity, excellence and success in transforming students' lives through international education opportunities. We envision a future where every qualified Nepalese student has access to world-class education in Japan.
+                To be the most trusted and preferred educational consultancy in Nepal, recognized for our integrity, excellence and success in transforming students&apos; lives through international education opportunities. We envision a future where every qualified Nepalese student has access to world-class education in Japan.
               </p>
             </motion.div>
           </div>

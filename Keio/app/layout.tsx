@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/brand/Logo.png",
-    apple: "/brand/Logo.png",
+    icon: "/brand/Logo-256.webp",
+    apple: "/brand/Logo-256.webp",
   },
   robots: {
     index: true,
@@ -61,9 +61,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <head>
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <link rel="preconnect" href="https://www.google-analytics.com" />
+        </head>
         {/* Google Analytics Scripts */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-C2NE79MLSW" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-C2NE79MLSW" strategy="lazyOnload" />
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

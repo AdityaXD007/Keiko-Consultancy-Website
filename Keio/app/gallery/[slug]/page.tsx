@@ -24,14 +24,14 @@ export default function GalleryCategoryPage({ params }: { params: Promise<{ slug
         const res = await fetch('/api/gallery');
         const data = await res.json();
         if (data.albums && data.albums.length > 0) {
-          const found = data.albums.find((a: any) => a.slug === slug);
+          const found = data.albums.find((a: { slug?: string }) => a.slug === slug);
           if (found) {
             const staticItem = getCategoryBySlug(slug);
             const photosList = found.photos && found.photos.length > 0
-              ? found.photos.map((p: any) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
+              ? found.photos.map((p: { image: string }) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
               : (staticItem ? staticItem.images : []);
 
-            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.jpeg';
+            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.webp';
             if (found.cover_image_url || found.cover_image) {
               const rawCover = found.cover_image_url || found.cover_image;
               cover = rawCover.startsWith('http') ? rawCover : `http://127.0.0.1:8000${rawCover}`;

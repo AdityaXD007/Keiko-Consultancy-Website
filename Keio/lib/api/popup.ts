@@ -14,7 +14,7 @@ export async function fetchPopupAnnouncement(): Promise<PopupAnnouncement | null
     const baseUrl = getBaseUrl();
     const response = await fetch(`${baseUrl}/api/popup/`, {
       headers: { Accept: 'application/json' },
-      next: { revalidate: 10, tags: ['popup'] },
+      next: { revalidate: 60, tags: ['popup'] },
     });
 
     if (!response.ok) {

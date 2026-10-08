@@ -30,6 +30,7 @@ export function CoursesSection({ courses }: CoursesSectionProps) {
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    priority={index < 2}
                   />
                 </div>
                 <div className="p-5 sm:p-6 flex flex-col flex-1">
@@ -49,6 +50,7 @@ export function CoursesSection({ courses }: CoursesSectionProps) {
                   </p>
                   <Link
                     href="/courses"
+                    aria-label={`Learn more about ${course.title}`}
                     className="text-yokohama-blue text-sm hover:text-yokohama-blue-dark font-semibold inline-flex items-center transition-colors self-start"
                   >
                     Learn More

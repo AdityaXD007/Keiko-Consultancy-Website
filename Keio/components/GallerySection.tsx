@@ -16,15 +16,15 @@ export function GallerySection() {
         const res = await fetch('/api/gallery');
         const data = await res.json();
         if (data.albums && data.albums.length > 0) {
-          const mapped: GalleryCategory[] = data.albums.map((item: any) => {
+          const mapped: GalleryCategory[] = data.albums.map((item: { id?: number | string; slug: string; title: string; description?: string; cover_image_url?: string; cover_image?: string; photos?: Array<{ image: string }> }) => {
             const staticItem = galleryCategories.find((c) => c.slug === item.slug);
             const photosList = item.photos && item.photos.length > 0
-              ? item.photos.map((p: any) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
+              ? item.photos.map((p: { image: string }) => (p.image.startsWith('http') ? p.image : `http://127.0.0.1:8000${p.image}`))
               : (staticItem ? staticItem.images : []);
 
-            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.jpeg';
+            let cover = staticItem ? staticItem.coverImage : '/banners/Banner1.webp';
             if (item.cover_image_url || item.cover_image) {
-              const rawCover = item.cover_image_url || item.cover_image;
+              const rawCover = item.cover_image_url || item.cover_image || '';
               cover = rawCover.startsWith('http') ? rawCover : `http://127.0.0.1:8000${rawCover}`;
             } else if (photosList.length > 0) {
               cover = photosList[0];

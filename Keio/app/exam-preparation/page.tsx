@@ -344,7 +344,7 @@ export default function ExamPreparation() {
               className="bg-yokohama-blue rounded-2xl p-8 text-white shadow-2xl"
             >
               <BookOpen className="w-16 h-16 mb-6" />
-              <h3 className="text-2xl font-bold mb-4">What's Included</h3>
+              <h3 className="text-2xl font-bold mb-4">What&apos;s Included</h3>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
                   <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -435,7 +435,7 @@ export default function ExamPreparation() {
               Ready to Ace Your Exam?
             </h2>
             <p className="text-xl mb-8 text-white max-w-2xl mx-auto">
-              Start your exam preparation journey with YOKOHAMA's proven methods and expert instructors
+              Start your exam preparation journey with YOKOHAMA&apos;s proven methods and expert instructors
             </p>
             <Link
               href="/contact"

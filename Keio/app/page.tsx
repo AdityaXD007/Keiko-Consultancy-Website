@@ -20,7 +20,8 @@ import { ServicesSection } from '@/components/Pages-Components/Home/ServiceSecti
 import { WhyChooseUsSection } from '@/components/Pages-Components/Home/WhyChooseUsSection';
 import { ExamPrepSection } from '@/components/Pages-Components/Home/ExamPrepSection';
 import { IntakesSection } from '@/components/Pages-Components/Home/IntakeSection';
-import { GallerySection } from '@/components/GallerySection';
+import dynamic from 'next/dynamic';
+const GallerySection = dynamic(() => import('@/components/GallerySection').then(mod => mod.GallerySection), { ssr: true });
 import { NewsNoticesSection } from '@/components/Pages-Components/Home/NewsNoticeSection';
 import { TestimonialList } from '@/components/Pages-Components/Home/TestimonialList';
 import { FaqSection } from '@/components/Pages-Components/Home/FAQSection';

@@ -13,7 +13,7 @@ export async function fetchGalleryAlbums(): Promise<GalleryAlbum[]> {
     const baseUrl = getBaseUrl();
     const response = await fetch(`${baseUrl}/api/gallery/`, {
       headers: { Accept: 'application/json' },
-      cache: 'no-store',
+      next: { revalidate: 300, tags: ['gallery'] },
     });
 
     if (!response.ok) {
@@ -33,7 +33,7 @@ export async function fetchGalleryAlbumBySlug(slug: string): Promise<GalleryAlbu
     const baseUrl = getBaseUrl();
     const response = await fetch(`${baseUrl}/api/gallery/${encodeURIComponent(slug)}/`, {
       headers: { Accept: 'application/json' },
-      cache: 'no-store',
+      next: { revalidate: 300, tags: ['gallery', `gallery:${slug}`] },
     });
 
 

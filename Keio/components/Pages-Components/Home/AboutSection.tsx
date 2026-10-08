@@ -42,11 +42,11 @@ export function AboutSection() {
           <FadeIn>
             <div className="relative h-[260px] sm:h-[340px] lg:h-[400px] rounded-2xl overflow-hidden shadow-md">
               <Image
-                src="/brand/Icon.jpeg"
+                src="/brand/Icon.webp"
                 alt="YOKOHAMA LANGUAGE & TRAINING CONSULTANCY (P) LTD. Icon"
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 584px"
               />
             </div>
           </FadeIn>

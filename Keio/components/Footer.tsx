@@ -11,7 +11,7 @@ export function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full p-1 shadow-md flex-shrink-0">
                 <div className="relative w-full h-full">
-                  <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} unoptimized sizes="(max-width: 768px) 100vw, 200px" />
+                  <Image src="/brand/Logo-256.webp" alt="Yokohama Logo" fill className="object-contain" sizes="(max-width: 640px) 80px, 96px" />
                 </div>
               </div>
               <div className="flex flex-col">
@@ -23,17 +23,18 @@ export function Footer() {
               Your gateway to study and career opportunities in Japan
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-yokohama-red transition-colors">
-                <Facebook size={20} />
+              {/* TODO: Replace placeholder '#' hrefs with actual Yokohama Consultancy social media URLs when available */}
+              <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-yokohama-red transition-colors">
+                <Facebook size={20} aria-hidden="true" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-yokohama-red transition-colors">
-                <Instagram size={20} />
+              <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-yokohama-red transition-colors">
+                <Instagram size={20} aria-hidden="true" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-yokohama-red transition-colors">
-                <X size={20} />
+              <a href="#" aria-label="X (Twitter)" className="text-gray-400 hover:text-yokohama-red transition-colors">
+                <X size={20} aria-hidden="true" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-yokohama-red transition-colors">
-                <Linkedin size={20} />
+              <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-yokohama-red transition-colors">
+                <Linkedin size={20} aria-hidden="true" />
               </a>
             </div>
           </div>

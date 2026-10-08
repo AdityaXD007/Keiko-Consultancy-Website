@@ -13,9 +13,9 @@ export interface Exam        { name: string; description: string }
 export interface Faq         { question: string; answer: string }
 
 export const HERO_IMAGES = [
-  '/banners/Banner1.jpeg',
-  '/banners/Banner2.jpeg',
-  '/banners/Banner3.jpeg',
+  '/banners/Banner1.webp',
+  '/banners/Banner2.webp',
+  '/banners/Banner3.webp',
 ] as const;
 
 export const STATS: ReadonlyArray<{ label: string; value: string; icon: LucideIcon }> = [
@@ -35,10 +35,10 @@ export const OBJECTIVES: readonly Objective[] = [
 ];
 
 export const COURSES: readonly Course[] = [
-  { title: 'Basic Japanese Language Course', description: 'Beginner-level classes focusing on Hiragana, Katakana, vocabulary, grammar, pronunciation and basic communication strategies.', duration: '3 Months', level: 'Beginner', image: '/home/Home1.jpeg' },
-  { title: 'Advanced Japanese Language Course', description: 'Advanced-level classes targeting fluency and proficiency in Japanese, with an emphasis on specialized vocabulary, Kanji and complex grammar structures.', duration: '6 Months', level: 'Advanced', image: '/home/Home3.jpeg' },
-  { title: 'Exam Preparation Course', description: 'Intensive courses designed to prepare students for exams like JLPT, NAT-TEST, J-TEST, JLCT, J-Cert, Top-J, Skill Test-JFT Basic.', duration: '2-6 Months', level: 'All Levels', image: '/home/Home4.jpeg' },
-  { title: 'Interview Skills Workshop', description: 'Practical workshops providing guidance on interview etiquette, communication techniques, and confidence-building strategies.', duration: '1-2 Weeks', level: 'All Levels', image: '/home/Home5.jpeg' },
+  { title: 'Basic Japanese Language Course', description: 'Beginner-level classes focusing on Hiragana, Katakana, vocabulary, grammar, pronunciation and basic communication strategies.', duration: '3 Months', level: 'Beginner', image: '/home/Home1.webp' },
+  { title: 'Advanced Japanese Language Course', description: 'Advanced-level classes targeting fluency and proficiency in Japanese, with an emphasis on specialized vocabulary, Kanji and complex grammar structures.', duration: '6 Months', level: 'Advanced', image: '/home/Home3.webp' },
+  { title: 'Exam Preparation Course', description: 'Intensive courses designed to prepare students for exams like JLPT, NAT-TEST, J-TEST, JLCT, J-Cert, Top-J, Skill Test-JFT Basic.', duration: '2-6 Months', level: 'All Levels', image: '/home/Home4.webp' },
+  { title: 'Interview Skills Workshop', description: 'Practical workshops providing guidance on interview etiquette, communication techniques, and confidence-building strategies.', duration: '1-2 Weeks', level: 'All Levels', image: '/home/Home5.webp' },
 ];
 
 export const SERVICES: readonly Service[] = [

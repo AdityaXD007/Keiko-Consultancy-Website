@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, ChevronRight, Bell, Newspaper } from 'lucide-react';
 import { motion } from 'motion/react';
 import type { Post } from '@/lib/api/types';
@@ -58,10 +59,12 @@ export function NewsCard({ post, index = 0 }: NewsCardProps) {
           {/* Optional Image Header */}
           {post.image && (
             <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-gray-100 border-b border-gray-100">
-              <img
+              <Image
                 src={post.image}
                 alt={post.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
           )}

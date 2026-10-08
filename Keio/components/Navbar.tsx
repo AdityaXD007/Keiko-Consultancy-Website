@@ -15,7 +15,7 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -56,7 +56,7 @@ export function Navbar() {
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
               <div className="relative w-18 h-18 shrink-0">
-                <Image src="/brand/Logo.png" alt="Yokohama Logo" fill className="object-contain" quality={100} unoptimized sizes="(max-width: 800px) 100vw, 200px" priority />
+                <Image src="/brand/Logo-256.webp" alt="Yokohama Logo" fill className="object-contain" sizes="72px" priority />
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-yokohama-dark-text text-base sm:text-lg">YOKOHAMA LANGUAGE</span>
@@ -87,9 +87,11 @@ export function Navbar() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
               className="lg:hidden p-2 text-yokohama-dark-text"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
             </button>
           </div>
         </div>

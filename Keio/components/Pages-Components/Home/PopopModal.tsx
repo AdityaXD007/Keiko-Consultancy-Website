@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { GraduationCap, X } from 'lucide-react';
 import type { PopupAnnouncement } from '@/lib/api/types';
@@ -10,6 +11,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? '';
 
 export function PopupModal({ popup }: { popup: PopupAnnouncement }) {
   const [visible, setVisible] = useState(true);
+  const imageUrl = popup.image ? (popup.image.startsWith('http') ? popup.image : `${API_BASE}${popup.image}`) : '';
 
   return (
     <AnimatePresence>
@@ -33,26 +35,28 @@ export function PopupModal({ popup }: { popup: PopupAnnouncement }) {
               aria-label="Close banner"
               className="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors z-50 p-1 bg-gray-100 hover:bg-gray-200 rounded-full"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
 
             <div className="flex flex-col items-center text-center mt-6 mb-6">
               {popup.image ? (
                 <div className="relative w-full h-44 mb-4 rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                  <img
-                    src={popup.image.startsWith('http') ? popup.image : `${API_BASE}${popup.image}`}
+                  <Image
+                    src={imageUrl}
                     alt={popup.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="400px"
+                    className="object-cover"
                   />
                 </div>
               ) : (
                 <div className="w-16 h-16 bg-yokohama-blue rounded-full flex items-center justify-center mb-4 shadow-inner">
-                  <GraduationCap className="w-8 h-8 text-white" />
+                  <GraduationCap className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
               )}
-              <h3 className="font-extrabold text-yokohama-dark-text leading-tight text-2xl mb-2">
+              <h2 className="font-extrabold text-yokohama-dark-text leading-tight text-2xl mb-2">
                 {popup.title}
-              </h3>
+              </h2>
               {popup.description && (
                 <p className="text-base text-gray-700 font-medium leading-relaxed mb-2">
                   {popup.description}

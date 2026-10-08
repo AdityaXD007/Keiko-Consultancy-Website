@@ -11,7 +11,7 @@ const team = [
     name_jp: '',
     role: 'Founder/Principal',
     role_jp: '創設者・校長',
-    image: '/team/Prakash Kumar Shrestha.jpeg',
+    image: '/team/Prakash Kumar Shrestha.webp',
     content: [
       "Welcome to our Japanese language Consultancy.",
       "It gives me great pleasure to welcome you to our website and share our vision with you. For more than 20 years, I have dedicated my career in helping students pursue quality education, international exposure and rewarding career opportunities through study in Japan. I have witnessed how language education can transform lives, opening doors to higher education, career advancement, cultural exchange and personal growth. That’s why, I believe Japan is the perfect education destination for Nepalese Students.",
@@ -46,7 +46,7 @@ const team = [
     name_jp: '',
     role: 'Vice-Principal/Counselor',
     role_jp: '副校長／カウンセラー',
-    image: '/team/Sushma Shrestha.jpeg',
+    image: '/team/Sushma Shrestha.webp',
     content: [
       "It is an absolute honor to be a part of an institution that empowers students to pursue their dreams and explore new opportunities in Japan. For the past 14 years, I have had the privilege of working closely with students who aspire to study, work and build successful futures in Japan. Throughout this journey, I have witnessed countless success stories and each one has reinforced my belief that the right guidance, quality education and determination can transform dreams into reality.",
       "Our consultancy was established with a clear vision: to provide students with not only Japanese language education but also the knowledge, confidence and support necessary to succeed in a new academic and cultural environment. We understand that choosing to pursue opportunities in Japan is an important life decision and we are committed to making that journey as smooth and rewarding as possible.",
@@ -78,7 +78,7 @@ const team = [
     name_jp: '',
     role: 'Head of Japanese Language Department',
     role_jp: '日本語学科長',
-    image: '/team/Sujan Shrestha.jpeg',
+    image: '/team/Sujan Shrestha.webp',
     content: [
       "Learning Japanese is more than mastering a language—it is the gateway to understanding a unique culture, accessing world-class educational opportunities and building a successful future in Japan.",
       "As the Head of the Japanese Language Department, I am proud to lead a team of dedicated instructors committed to helping our students achieve excellence in Japanese language proficiency. Our department focuses on developing strong communication skills in speaking, listening, reading and writing while fostering a deep understanding of Japanese culture, customs and values. I am honored to guide students as they take their first steps toward achieving their dreams in Japan. In our classes, we focus not only on grammar, vocabulary and communication skills but also on understanding the values, traditions and way of life that make Japan unique.",
@@ -109,7 +109,7 @@ const team = [
     name_jp: '',
     role: 'Japanese Language Instructor',
     role_jp: '日本語講師',
-    image: '/team/Sabitri Shrestha.jpeg',
+    image: '/team/Sabitri Shrestha.webp',
     content: [
       "Having an experience of teaching Japanese language for nearly 2 decades, I have had the privilege of teaching Japanese language to Nepalese students who aspire to study, work and build successful careers in Japan. Throughout my teaching journey, I have witnessed countless students transform from beginners who could not read a single Japanese character into confident individuals living and succeeding in Japan.",
       "One of the most rewarding aspects of my career has been seeing students overcome challenges through dedication and perseverance. Learning Japanese is not always easy. Hiragana, Katakana, Kanji, grammar and conversation skills require time and consistent practice. However, I have learned that students who remain disciplined and practice regularly achieve remarkable progress. My suggestions for successful Japanese language learning are practicing reading and writing every day, even if only for 30–40 minutes. Expand your vocabulary and study Kanji step by step. Listen to Japanese audio and try reading along.",
@@ -134,7 +134,7 @@ const team = [
   }
 ];
 
-function TeamMemberCard({ member, index, shortVersion }: { member: any, index: number, shortVersion?: boolean }) {
+function TeamMemberCard({ member, index, shortVersion }: { member: (typeof team)[number], index: number, shortVersion?: boolean }) {
   const [language, setLanguage] = useState<'en' | 'jp'>('en');
   const contentToDisplay = language === 'en' ? member.content : member.content_jp;
 
